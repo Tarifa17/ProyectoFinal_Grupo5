@@ -5,4 +5,9 @@
     border-radius: 15px;
     padding: 2rem;
     text-align: center;
+    align-items: center;
   }
+  .custom-card {
+    background-color: red !important;/* Cambia esto al color que prefieras */
+    color: white !important;/* Cambia esto al color de texto que prefieras */
+}
