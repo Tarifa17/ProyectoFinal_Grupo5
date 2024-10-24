@@ -9,16 +9,17 @@ import AboutUs from './components/AboutUs';
 import ErrorPage from './components/ErrorPage';
 import JuegoPhaser from './components/JuegoPhaser';
 import Layout from './components/Layout';
+import Home from './components/Home';
 
 function App() {
   return ( 
     <div className='container'>
       <Routes>
     <Route path='/' element={<Layout/>}>
-       <Route index element = {<JuegoPhaser/>}/>
+       <Route index element = {<Home/>}/>
        <Route path='/aboutUs' element ={<AboutUs/>}/>
        <Route path='/juego' element ={<Juego/>}/>
-
+       <Route path='/juegoPhaser' element ={<JuegoPhaser/>}/>
        <Route path='*' element={<ErrorPage/>}/>
        </Route>
     </Routes>

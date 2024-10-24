@@ -33,7 +33,7 @@ function Juego(){
     }, []);
 return(
     <div>
-        hola
+        
     </div>
 ) 
 
