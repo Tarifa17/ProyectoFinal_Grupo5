@@ -6,7 +6,7 @@ function Layout() {
         <header>
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
-                <Navbar.Brand href="#home">Mi proyecto Final</Navbar.Brand>
+                <Navbar.Brand href="/">Mi proyecto Final</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -14,10 +14,11 @@ function Layout() {
                         <Nav.Link href="#link">About Us</Nav.Link>
                         <NavDropdown title="Proyectos" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/juegoPhaser">juego Phaser</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Another action
+                            <NavDropdown.Item href="/gestorBillerera">
+                               gestor de Billeteras
                             </NavDropdown.Item>
                             <NavDropdown.Item href="/juego">juego</NavDropdown.Item>
+                            <NavDropdown.Item href="/calcularIMC">calcularIMC</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4">
                                 Separated link

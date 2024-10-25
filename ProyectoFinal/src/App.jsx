@@ -10,7 +10,8 @@ import ErrorPage from './components/ErrorPage';
 import JuegoPhaser from './components/JuegoPhaser';
 import Layout from './components/Layout';
 import Home from './components/Home';
-
+import GestorBilletera from './components/GestorBilletera';
+import CalcularImc from './components/CalcularIMC';
 function App() {
   return ( 
     <div className='container'>
@@ -20,6 +21,8 @@ function App() {
        <Route path='/aboutUs' element ={<AboutUs/>}/>
        <Route path='/juego' element ={<Juego/>}/>
        <Route path='/juegoPhaser' element ={<JuegoPhaser/>}/>
+       <Route path='/gestorBillerera' element ={<GestorBilletera/>}/>
+       <Route path='/calcularIMC' element ={<CalcularImc/>}/>
        <Route path='*' element={<ErrorPage/>}/>
        </Route>
     </Routes>
