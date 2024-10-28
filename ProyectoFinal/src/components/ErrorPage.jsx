@@ -1,6 +1,6 @@
 function ErrorPage(){
  return(
-    <h1>ERROR!! que estas buscando??( ͡° ͜ʖ ͡°)</h1> 
+    <h1 className=" container">ERROR!! que estas buscando??( ͡° ͜ʖ ͡°)</h1> 
 
  )
 }
