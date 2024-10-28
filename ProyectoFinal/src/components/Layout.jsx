@@ -2,7 +2,7 @@ import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
 function Layout() {
     return (
-        <>
+        <div className='container'>
         <header>
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
@@ -13,16 +13,13 @@ function Layout() {
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/aboutUs">About Us</Nav.Link>
                         <NavDropdown title="Proyectos" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/juegoPhaser">juego Phaser</NavDropdown.Item>
+                            <NavDropdown.Item href="/juegoPhaser">Juego React</NavDropdown.Item>
                             <NavDropdown.Item href="/gestorBillerera">
-                               gestor de Billeteras
+                               Gestor de Billeteras
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="/juego">juego</NavDropdown.Item>
-                            <NavDropdown.Item href="/calcularIMC">calcularIMC</NavDropdown.Item>
+                            <NavDropdown.Item href="/juego">Juego Phaser</NavDropdown.Item>
+                            <NavDropdown.Item href="/calcularIMC">Calculadora IMC</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">
-                                Separated link
-                            </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
@@ -35,7 +32,7 @@ function Layout() {
         <footer>
             <h1>este es el FOOTER</h1>
         </footer>
-        </>
+        </div>
     )
 }
 export default Layout;

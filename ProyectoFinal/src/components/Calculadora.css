@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espacio entre cada elemento */
+    max-width: 300px; /* Para que no ocupe todo el ancho de la pantalla */
+    margin: 0 auto; /* Centrar el contenedor */
+}
+
+input, button {
+    width: 100%; /* Hacer que los inputs y botones ocupen todo el ancho del contenedor */
+    padding: 10px; /* Espacio interno para mejor apariencia */
+    box-sizing: border-box; /* Para incluir el padding en el tamaño total */
+}

@@ -32,7 +32,7 @@ function Juego(){
         };
     }, []);
 return(
-    <div>
+    <div className="container">
         
     </div>
 ) 

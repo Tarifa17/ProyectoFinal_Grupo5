@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Calculadora.css';
 
 function CalcularImc() {
     const [peso, setPeso] = useState('');
@@ -29,7 +30,7 @@ function CalcularImc() {
     };
 
     return (
-        <div>
+        <div className='container'>
             <h1>Calculadora de IMC</h1>
             <input 
                 type="text" 
