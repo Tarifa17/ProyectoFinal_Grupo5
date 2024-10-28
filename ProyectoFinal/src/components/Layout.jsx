@@ -11,7 +11,7 @@ function Layout() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="#link">About Us</Nav.Link>
+                        <Nav.Link href="/aboutUs">About Us</Nav.Link>
                         <NavDropdown title="Proyectos" id="basic-nav-dropdown">
                             <NavDropdown.Item href="/juegoPhaser">juego Phaser</NavDropdown.Item>
                             <NavDropdown.Item href="/gestorBillerera">
