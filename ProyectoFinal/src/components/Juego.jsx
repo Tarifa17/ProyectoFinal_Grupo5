@@ -32,8 +32,8 @@ function Juego(){
         };
     }, []);
 return(
-    <div className="container">
-        
+    <div className="container" id="game">
+    
     </div>
 ) 
 

@@ -1,5 +1,8 @@
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
+import './Layout.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function Layout() {
     return (
         <div className='container'>
@@ -26,7 +29,7 @@ function Layout() {
             </Container>
         </Navbar>
         </header>
-<main>
+<main className='container-fluid'>
     <Outlet></Outlet>
 </main>
         <footer>
