@@ -16,11 +16,11 @@ function Layout() {
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/aboutUs">About Us</Nav.Link>
                         <NavDropdown title="Proyectos" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="/juegoPhaser">Juego React</NavDropdown.Item>
+                            <NavDropdown.Item href="/juegoPhaser">Juego Phaser</NavDropdown.Item>
                             <NavDropdown.Item href="/gestorBillerera">
                                Gestor de Billeteras
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="/juego">Juego Phaser</NavDropdown.Item>
+                            <NavDropdown.Item href="/juego">Desafio Matematico</NavDropdown.Item>
                             <NavDropdown.Item href="/calcularIMC">Calculadora IMC</NavDropdown.Item>
                             <NavDropdown.Divider />
                         </NavDropdown>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './GestorBilletera.css'
 
 function GestorBilletera() {
   const [usuario, setUsuario] = useState('');
@@ -46,7 +47,7 @@ function GestorBilletera() {
   };
 
   return (
-    <div className="container">
+    <div className="container" id='bodyGestor'>
       <div className="card custom-card" style={{ width: '24rem' }}>
         <img src="/public/img/Bvirt.jpg" className="card-img-top" alt="Imagen Billetera" />
         <div className="card-body">
