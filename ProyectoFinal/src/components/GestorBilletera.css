@@ -1,0 +1,7 @@
+#bodyGestor {
+    max-height: 100%;
+    max-width: 100%;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+ 
+}
