@@ -11,7 +11,7 @@ function Juego(){
         setIsPlaying(true); 
     };
     return(
-        <>
+        <div className='container-flex'>
         {isPlaying ? (
             <SumaResta />
         ) : (
@@ -25,7 +25,7 @@ function Juego(){
                 </Card>
             </div>
         )}
-    </>
+    </div>
     )
    }
    export default Juego;

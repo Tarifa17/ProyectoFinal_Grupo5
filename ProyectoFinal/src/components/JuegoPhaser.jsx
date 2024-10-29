@@ -32,7 +32,7 @@ function JuegoPhaser(){
         };
     }, []);
 return(
-    <div className="container" id="game">
+    <div className="container-flex" id="game">
     
     </div>
 ) 
