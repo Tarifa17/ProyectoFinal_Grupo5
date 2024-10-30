@@ -13,18 +13,19 @@ function GestorBilletera() {
 
   // Función para guardar datos
   const guardarDatos = () => {
-    setListaUsuarios([...listaUsuarios, usuario]);
-    setListaBilleteras([...listaBilleteras, billetera]);
-    setListaTransacciones([...listaTransacciones, parseInt(transaccion, 10)]);
-    setUsuario('');
-    setBilletera('');
-    setTransaccion('');
+    setListaUsuarios([...listaUsuarios, usuario]); //Guardamos los datos en la Lista de Usuarios
+    setListaBilleteras([...listaBilleteras, billetera]); //Guardamos los datos en la Lista de Billeteras
+    setListaTransacciones([...listaTransacciones, parseInt(transaccion, 10)]); //Guardamos los datos en la Lista de transacciones y cambiamos el valor a un entero
+    setUsuario(''); //Limpiamos los campos despues de guardar los datos
+    setBilletera(''); //Limpiamos los campos despues de guardar los datos
+    setTransaccion(''); //Limpiamos los campos despues de guardar los datos
   };
 
   // Función para mostrar los datos guardados
   const mostrarDatos = () => {
-    return listaUsuarios.map((usuario, index) => (
-      <li key={index} className="list-group-item">
+    return listaUsuarios.map((usuario, index) => ( //Utilizamos map para iterar sobre el array de usuarios y generamos un elemento para  cada usuario con sus datos
+     //Renderizamos la lista con los datos del usuario y usamos su posicion en el array como key
+     <li key={index} className="list-group-item"> 
         {usuario} - {listaBilleteras[index]} - {listaTransacciones[index]}
       </li>
     ));
@@ -32,18 +33,18 @@ function GestorBilletera() {
 
   // Función para mostrar al usuario con la mayor transacción
   const mostrarMayor = () => {
-    const maxTransacciones = {};
-    listaUsuarios.forEach((usuario, index) => {
-      const trans = listaTransacciones[index];
-      if (!maxTransacciones[usuario] || trans > maxTransacciones[usuario]) {
+    const maxTransacciones = {}; //Almacenamos el numero maximo de transacciones para cada usuario
+    listaUsuarios.forEach((usuario, index) => { // Iteramos sobre cada usuario en la lista
+      const trans = listaTransacciones[index]; // Obtenemos el numero de transacciones del usuario mediante el indice del array
+      if (!maxTransacciones[usuario] || trans > maxTransacciones[usuario]) { // Si el usuario no tiene transacciones o la transaccion actual es mayor que la registrada se actualiza la transaccion mayor del usuario
         maxTransacciones[usuario] = trans;
       }
     });
 
-    const resultadosTemp = Object.entries(maxTransacciones).map(
-      ([usuario, transaccion]) => `${usuario} tiene la transacción más alta: ${transaccion}`
+    const resultadosTemp = Object.entries(maxTransacciones).map( // Mediante Object.entries convertimos el array en una tupla con clave-valor, y luego con map creamos otro array para mostrar los datos
+      ([usuario, transaccion]) => `${usuario} tiene la transacción más alta: ${transaccion}` // Mostramos cada usuario y transaccion mas alta en un array legible
     );
-    setResultados(resultadosTemp);
+    setResultados(resultadosTemp); // Establecemos el nuevo valor de los resultados con el valor de resultadosTemp
   };
 
   return (
