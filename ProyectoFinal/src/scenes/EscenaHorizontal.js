@@ -8,6 +8,8 @@ class EscenaHorizontal extends Phaser.Scene {
         this.puntaje = 0;
         this.textoPuntaje = 0;
         this.boss = null;
+        this.vidaBoss = 10;
+        this.bossActivo = false;
     }
 
     preload() {
@@ -100,24 +102,14 @@ class EscenaHorizontal extends Phaser.Scene {
         this.puntaje += 400; // Aumenta el puntaje o realiza cualquier otra acción que desees
         this.textoPuntaje.setText('Puntaje: ' + this.puntaje); // Actualiza el puntaje en pantalla
     }
-    destruirBoss(proyectil, boss) {
-        proyectil.destroy(); // Destruir proyectil al colisionar
-        this.sound.play('explosion');
-        boss.destroy(); // Destruir al jefe
-        if (this.finalBoss && this.finalBoss.isPlaying) {
-            this.finalBoss.stop(); // Detener musica del jefe
-        }
-    
-        // Reiniciar la música de fondo
-        if (this.MusicaFondo && !this.MusicaFondo.isPlaying) {
-            this.MusicaFondo.play();
-        }
-    }
     aparecerBoss() {
+        this.vidaBoss = 10; //Reiniciamos las vidas del jefe
+        this.bossActivo = true;
+        
         // Mostrar el jefe 
-        this.boss.visible = true;
-    this.boss.setActive(true); // Activar el jefe para que interactúe con la física
-    //this.boss.body.enable = true;
+        this.boss.visible = true; //Mostramos el jefe
+        this.boss.setActive(true); // Activamos las colisiones del jefe para interactuar con las fisicas
+        //this.boss.body.enable = true;
     
         // Animación de entrada del jefe 
         this.tweens.add({
@@ -144,10 +136,29 @@ class EscenaHorizontal extends Phaser.Scene {
     
         console.log('El jefe ha aparecido!');
 
-        this.physics.add.collider(this.grupoProyectiles, this.boss, this.destruirBoss, null, this);
+        this.physics.add.overlap(this.grupoProyectiles, this.boss, this.reducirVidaBoss, null, this);
     }
-    
+    reducirVidaBoss(boss, proyectil) {
+        // Verificar si el jefe aún tiene vidas
+        if (!this.bossActivo) return; // Salir si el jefe ya ha sido destruido
 
+        proyectil.destroy(); // Destruir el proyectil
+
+        this.vidaBoss -= 1; // Reducir las vidas del jefe
+        console.log(`El jefe tiene ${this.vidaBoss} vidas restantes`);
+
+        // Verificar si las vidas del jefe han llegado a 0
+        if (this.vidaBoss <= 0) {
+            this.derrotarBoss(boss);
+        }
+    }
+
+    derrotarBoss(boss){
+        this.bossActivo = false; // Marcar el jefe como inactivo
+        boss.destroy(); // Destruir al jefe
+        this.finalBoss.stop();
+        console.log('El jefe ha sido derrotado!');
+    }
 
     update() {
         this.jugador.setVelocityX(0);
