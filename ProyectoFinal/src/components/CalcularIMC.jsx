@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Calculadora.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function CalcularImc() {
+function CalcularImc() { //Funcion para calcular el peso del usuario
     const [peso, setPeso] = useState('');
     const [altura, setAltura] = useState('');
     const [nombre, setNombre] = useState('');
@@ -11,13 +11,13 @@ function CalcularImc() {
     const [nivelPeso, setNivelPeso] = useState('');
 
     const calcularIMC = () => {
-        const alturaMetros = parseFloat(altura);
-        const pesoKg = parseFloat(peso);
+        const alturaMetros = parseFloat(altura); //Convertimos los datos del usuario a flotantes
+        const pesoKg = parseFloat(peso); //Convertimos los datos del usuario a flotantes
 
-        if (!pesoKg || !alturaMetros) return;
+        if (!pesoKg || !alturaMetros) return; //Si los datos introducidos son invalidos se detiene la funcion 
 
-        const imcCalculado = pesoKg / Math.pow(alturaMetros, 2);
-        setImc(imcCalculado.toFixed(2));
+        const imcCalculado = pesoKg / Math.pow(alturaMetros, 2); //Calculo usando la formula y lo guardamos en una variable
+        setImc(imcCalculado.toFixed(2)); //El resultado del calculo lo redondeamos a maximo 2 decimales
 
         if (imcCalculado < 18.5) {
             setNivelPeso('Bajo Peso');
@@ -43,23 +43,23 @@ function CalcularImc() {
                 type="text" 
                 placeholder="Apellido" 
                 value={apellido} 
-                onChange={(e) => setApellido(e.target.value)} 
+                onChange={(e) => setApellido(e.target.value)} //Actualizamos al estado correspondiente con OnChange
             />
             <input 
                 type="number" 
                 placeholder="Peso en kg" 
                 value={peso} 
-                onChange={(e) => setPeso(e.target.value)} 
+                onChange={(e) => setPeso(e.target.value)} //Actualizamos al estado correspondiente con OnChange
             />
             <input 
                 type="number" 
                 placeholder="Altura en metros" 
                 value={altura} 
-                onChange={(e) => setAltura(e.target.value)} 
-            />
-            <button onClick={calcularIMC}>Calcular IMC</button>
+                onChange={(e) => setAltura(e.target.value)} //Actualizamos al estado correspondiente con OnChange
+            /> 
+            <button onClick={calcularIMC}>Calcular IMC</button> 
 
-            {imc && (
+            {imc && ( //Esto se muestra despues de ingresar los resultados
                 <div>
                     <h2>Paciente: {nombre} {apellido}</h2>
                     <p>IMC: {imc}</p>
