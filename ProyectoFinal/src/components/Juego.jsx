@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import SumaResta from './SumaResta';
+//import SumaResta from './SumaResta';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Dificultad from './Dificultad';
 
 function Juego(){
     const [isPlaying, setIsPlaying] = useState(false);
@@ -13,7 +14,7 @@ function Juego(){
     return(
         <div className='container-flex'>
         {isPlaying ? (
-            <SumaResta />
+            <Dificultad />
         ) : (
             <div className="container">
                 <Card style={{ width: '18rem' }}>

@@ -51,7 +51,7 @@ function SumaResta() {
     }
 
     return (
-        <div className="container">
+        <div className="container-flex">
             <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src="public/nado.jpeg" width={250} />
                 <Card.Body>
