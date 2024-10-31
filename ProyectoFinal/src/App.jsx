@@ -14,6 +14,8 @@ import GestorBilletera from './components/GestorBilletera';
 import CalcularImc from './components/CalcularIMC';
 import Dificultad from './components/Dificultad';
 import SumaResta from './components/SumaResta';
+import MultiplicacionDivision from './components/MultiplicacionDivision';
+
 
 function App() {
   return ( 
@@ -28,6 +30,7 @@ function App() {
        <Route path='/calcularIMC' element ={<CalcularImc/>}/>
        <Route path='/dificultad' element={<Dificultad/>}/>
        <Route path='/sumaResta' element={<SumaResta/>}/> 
+       <Route path='/MultiplicacionDivision' element={<MultiplicacionDivision/>}/> 
        <Route path='*' element={<ErrorPage/>}/>
        </Route>
     </Routes>
