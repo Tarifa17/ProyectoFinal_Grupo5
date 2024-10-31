@@ -7,8 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function MultiplicacionDivision() {
     const generarOperacion = () => {
-        const numero1 = Math.floor(Math.random() * 10) + 1;
-        const numero2 = Math.floor(Math.random() * 10) + 1;
+        const numero1 = Math.floor(Math.random() * 8) + 2;
+        const numero2 = Math.floor(Math.random() * 5) + 1;
         const esMultiplicacion = Math.random() > 0.5;
         const resultado = esMultiplicacion ? numero1 * numero2 : Math.floor(numero1 / numero2);
 
@@ -57,9 +57,9 @@ function MultiplicacionDivision() {
                 <Card.Body>
                     <Card.Title>
                         <h2>
-                            {operacion.tipo === 'multiplicacion' 
-                                ? `${operacion.numero1} × ${operacion.numero2}` 
-                                : `${operacion.numero1 * operacion.numero2} ÷ ${operacion.numero1}`}
+                        {operacion.tipo === 'multiplicacion' 
+            ? `${operacion.numero1} × ${operacion.numero2}` 
+            : `${operacion.numero1} ÷ ${operacion.numero2}`}
                         </h2>
                     </Card.Title>
                     <input 
