@@ -1,4 +1,5 @@
 import React from 'react';
+import './AboutUs.css'; 
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Asegúrate de importar Bootstrap
 
@@ -6,61 +7,54 @@ class AboutUs extends React.Component {
     render() {
         return (
             <div className='container' style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
-                {/* Primera Tarjeta */}
+                {/* Primera Tarjeta Tarifa*/}
                 <Card className="custom-card" style={{ width: '30rem', height: '14rem', overflow: 'hidden' }}>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <Card.Img variant="left" src="/Cat.jpeg" style={{ width: '150px', height: '150px', objectFit: 'cover', marginRight: '2px' }} />
-                        <Card.Body>
+                    <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+                        <Card.Img className="ilustracion" variant="left" src="/Cat.jpeg" style={{ width: '150px', height: '150px', objectFit: 'cover', marginRight: '15px',marginLeft: '5px' }} />
+                        <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                             <Card.Title>Mateo Tarifa "Spine"</Card.Title>
-                            <Card.Text style={{ fontSize: '0.8rem', overflow: 'hidden', maxHeight: '100px' }}>
-                                Soy un aspirador a programador Front-end y desarrollador Web, me encanta la musica y los videojuegos. Soy fanatico de Gustavo Cerati y mi juego Favorito es Terraria.
-                                Preferiblemente en el mundo de la programacion o de los videojuegos soy conocido como Spinerati, nombre proveniente de dos musico que admiro muchisimo, Spinetta y Cerati.
-                                Mi sueño es hacer un juego que trate los temas delicados de la salud mental, la depresión y las etapas del duelo.
+                            <Card.Text style={{ fontSize: '0.8rem', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                textp
                             </Card.Text>
                         </Card.Body>
                     </div>
                 </Card>
 
-                {/* Segunda Tarjeta */}
-                <Card style={{ width: '30rem', height: '14rem', overflow: 'hidden' }}>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <Card.Img variant="left" src="/meme.jpg" style={{ width: '150px', height: '150px', objectFit: 'cover', marginRight: '10px' }} />
-                        <Card.Body>
+                {/* Segunda Tarjeta Ruben*/}
+                <Card className="custom-card" style={{ width: '30rem', height: '14rem', overflow: 'hidden' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+                        <Card.Img className="ilustracion" variant="left" src="/meme.jpg" style={{ width: '150px', height: '150px', objectFit: 'cover', marginRight: '15px',marginLeft: '5px' }} />
+                        <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                             <Card.Title>Ruben</Card.Title>
                             <Card.Text style={{ fontSize: '0.8rem', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                Soy un aspirador a programador Front-end y desarrollador Web, me encanta la musica y los videojuegos. Soy fanatico de Gustavo Cerati y mi juego Favorito es Terraria.
-                                Preferiblemente en el mundo de la programacion o de los videojuegos soy conocido como Spinerati, nombre proveniente de dos musico que admiro muchisimo, Spinetta y Cerati.
-                                Mi sueño es hacer un juego que trate los temas delicados de la salud mental, la depresión y las etapas del duelo.
+                                texto-
                             </Card.Text>
                         </Card.Body>
                     </div>
                 </Card>
 
-                {/* Tercera Tarjeta */}
-                <Card style={{ width: '30rem', height: '14rem', overflow: 'hidden' }}>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <Card.Img variant="left" src="/Quito.png" style={{ width: '150px', height: '150px', objectFit: 'cover', marginRight: '10px' }} />
-                        <Card.Body>
-                            <Card.Title>Mateo Tarifa "Spine"</Card.Title>
+                {/* Tercera Tarjeta EstebanIbañez */}
+                <Card className="custom-card" style={{ width: '30rem', height: '14rem', overflow: 'hidden' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+                        <Card.Img className="ilustracion" variant="left" src="/Quito.png" style={{ width: '150px', height: '150px', objectFit: 'cover', marginRight: '15px',marginLeft: '5px'}} />
+                        <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                            <Card.Title className="Name">Esteban Ibañez "Qutiox"</Card.Title>
                             <Card.Text style={{ fontSize: '0.8rem', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                Soy un aspirador a programador Front-end y desarrollador Web, me encanta la musica y los videojuegos. Soy fanatico de Gustavo Cerati y mi juego Favorito es Terraria.
-                                Preferiblemente en el mundo de la programacion o de los videojuegos soy conocido como Spinerati, nombre proveniente de dos musico que admiro muchisimo, Spinetta y Cerati.
-                                Mi sueño es hacer un juego que trate los temas delicados de la salud mental, la depresión y las etapas del duelo.
+                                Soy Esteban Ibañez un desarrollador que le gusta la parte de la estetica y el diseño en si, tengo 18 años y aspiro a ser un front-end developer
+                                me gusta roblox y hacer modelos 3D en blender :P
                             </Card.Text>
                         </Card.Body>
                     </div>
                 </Card>
 
-                {/* Cuarta Tarjeta */}
-                <Card style={{ width: '30rem', height: '14rem', overflow: 'hidden' }}>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <Card.Img variant="left" src="/Cat.jpeg" style={{ width: '150px', height: '150px', objectFit: 'cover', marginRight: '10px' }} />
-                        <Card.Body>
+                {/* Cuarta Tarjeta Abachino*/}
+                <Card className="custom-card" style={{ width: '30rem', height: '14rem', overflow: 'hidden' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+                        <Card.Img className="ilustracion" variant="left" src="/Cat.jpeg" style={{ width: '150px', height: '150px', objectFit: 'cover', marginRight: '15px',marginLeft: '5px' }} />
+                        <Card.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                             <Card.Title>Mateo Tarifa "Spine"</Card.Title>
                             <Card.Text style={{ fontSize: '0.8rem', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                Soy un aspirador a programador Front-end y desarrollador Web, me encanta la musica y los videojuegos. Soy fanatico de Gustavo Cerati y mi juego Favorito es Terraria.
-                                Preferiblemente en el mundo de la programacion o de los videojuegos soy conocido como Spinerati, nombre proveniente de dos musico que admiro muchisimo, Spinetta y Cerati.
-                                Mi sueño es hacer un juego que trate los temas delicados de la salud mental, la depresión y las etapas del duelo.
+                                texto-
                             </Card.Text>
                         </Card.Body>
                     </div>
