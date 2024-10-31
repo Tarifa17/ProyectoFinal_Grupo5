@@ -1,0 +1,23 @@
+
+
+#bodySumR {
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px; /* Espacio entre cada elemento */
+    max-width: 600px; /* Para que no ocupe todo el ancho de la pantalla */
+    margin: 0 auto; /* Centrar el contenedor*/
+    padding: 10px;    /* Añadir algo de espacio alrededor */
+    background-color: #313452; /* Fondo claro */
+    border-radius: 30px; /* Bordes redondeados */
+    box-shadow: 0 0 20px rgba(218, 5, 5, 0.1); /* Sombra ligera */
+}
+
+
+.button-container {
+    display: flex;
+    
+    flex-direction: column;
+    gap: 40px; 
+    margin: 30px; 
+}
