@@ -5,6 +5,7 @@ import EscenaBonus from "../scenes/EscenaBonus";
 import GameOver from "../scenes/GameOver";
 import EscenaMain from "../scenes/EscenaMain";
 import EscenaHorizontal from "../scenes/EscenaHorizontal";
+import Ganaste from "../scenes/Ganaste";
 function JuegoPhaser(){
     useEffect(() => {
         // Configuración del juego Phaser
@@ -20,7 +21,7 @@ function JuegoPhaser(){
                     debug: false
                 }
             },
-            scene: [EscenaMain, GameOver, EscenaBonus, EscenaHorizontal]
+            scene: [EscenaMain, GameOver, EscenaBonus, EscenaHorizontal,Ganaste]
         };
         
         // Inicialización del juego
