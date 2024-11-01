@@ -24,6 +24,8 @@ class EscenaHorizontal extends Phaser.Scene {
         this.load.audio('disparo', '/public/sound/disparoS.mp3');
         this.load.audio('explosion', '/public/sound/explosion1.mp3');
         this.load.spritesheet('nave1', '/public/img/nave2-Sheet.png', { frameWidth: 64, frameHeight: 54 })
+           //boss proyectile
+           this.load.image('meteoro2', '/public/img/meteoroA.png');
     }
 
     create() {
@@ -44,6 +46,13 @@ class EscenaHorizontal extends Phaser.Scene {
         this.boss = this.physics.add.sprite(900, 200, 'boss');
         this.boss.visible = false;
         this.boss.setActive(false);
+               //----------------------------------------------proyectileBoss---------
+        // ... configuración inicial existente ...
+        this.grupoProyectilesBoss = this.physics.add.group(); // Crear el grupo para proyectiles del jefe
+
+        // Configura las colisiones
+        this.physics.add.collider(this.jugador, this.grupoProyectilesBoss, this.gameOver, null, this);
+        //------------------------------Boss---
         
 
         this.anims.create({
@@ -110,6 +119,13 @@ class EscenaHorizontal extends Phaser.Scene {
         this.boss.visible = true; //Mostramos el jefe
         this.boss.setActive(true); // Activamos las colisiones del jefe para interactuar con las fisicas
         //this.boss.body.enable = true;
+          // Temporizador para disparos del jefe
+          this.time.addEvent({
+            delay: 5000, // Dispara cada 5 segundos
+            callback: this.dispararBoss,
+            callbackScope: this,
+            loop: true
+        });
     
         // Animación de entrada del jefe 
         this.tweens.add({
@@ -138,6 +154,22 @@ class EscenaHorizontal extends Phaser.Scene {
 
         this.physics.add.overlap(this.grupoProyectiles, this.boss, this.reducirVidaBoss, null, this);
     }
+    // Método para disparar un proyectil desde el jefe hacia el jugador
+    dispararBoss() {
+        if (!this.bossActivo) return; // Verifica si el jefe sigue activo
+    
+        // Calcula la dirección hacia el jugador
+        const posX = this.jugador.x - this.boss.x;
+        const posY = this.jugador.y - this.boss.y;
+        const velocidad = 0.3;
+        // Crea y dispara el proyectil en la dirección del jugador
+        const proyectilBoss = this.grupoProyectilesBoss.create(this.boss.x, this.boss.y, 'meteoro2');
+        
+        // Asigna velocidad en la dirección del jugador
+        proyectilBoss.setVelocityX(posX * velocidad);
+        proyectilBoss.setVelocityY(posY * velocidad);
+    }
+    
     reducirVidaBoss(boss, proyectil) {
         // Verificar si el jefe aún tiene vidas
         if (!this.bossActivo) return; // Salir si el jefe ya ha sido destruido
