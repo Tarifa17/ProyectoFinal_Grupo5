@@ -99,6 +99,17 @@ class EscenaHorizontal extends Phaser.Scene {
             this.finalBoss.stop();
         }
     }
+    Ganaste(jugador) {
+        this.physics.pause(); 
+        jugador.setTint(0xff0000);
+        
+        this.scene.start('Ganaste', { puntaje: this.puntaje });
+        this.MusicaFondo.stop();
+        if (this.finalBoss && this.finalBoss.isPlaying) {
+            this.finalBoss.stop();
+        }
+    }
+    
     disparar() {
         const proyectil = this.grupoProyectiles.create(this.jugador.x, this.jugador.y, 'bullet');
         proyectil.setVelocityX(400); 
@@ -190,6 +201,11 @@ class EscenaHorizontal extends Phaser.Scene {
         boss.destroy(); // Destruir al jefe
         this.finalBoss.stop();
         console.log('El jefe ha sido derrotado!');
+
+        this.scene.start('Ganaste', { puntaje: this.puntaje });
+        
+ 
+        
     }
 
     update() {
@@ -219,8 +235,9 @@ class EscenaHorizontal extends Phaser.Scene {
             this.disparar();
         }
             //boss/.--------------------------------------------------------------------------------------------------
-            if (this.puntaje >= 2000 && !this.boss.visible) {
+            if (this.puntaje >= 2000 && !this.boss.visible && !this.bossGenerado) {
                 this.aparecerBoss(); // Llamar a una función para manejar la aparición del jefe
+                this.bossGenerado = true; // Marcar que el jefe ha sido generado
             }
             
             
