@@ -10,6 +10,8 @@ class EscenaHorizontal extends Phaser.Scene {
         this.boss = null;
         this.vidaBoss = 10;
         this.bossActivo = false;
+        this.tiempoBoss = 0; //tiempo del boss
+        this.meteoritoEnGeneracion = false; //boleano para el boss
     }
 
     preload() {
@@ -18,6 +20,7 @@ class EscenaHorizontal extends Phaser.Scene {
         this.load.image('bullet', '/public/img/bullet.png');
         //this.load.image('nave', '/public/resources/SS2.png');
         this.load.image('enemigoA', '/public/img/enemigoA.png');
+        this.load.image('meteoroVertical', '/public/img/meteoroA.png');
         this.load.image('boss', '/public/img/boss1.png');
         this.load.audio('finalBoss', '/public/sound/finalBoss.mp3');
         this.load.audio('MusicaFondo', '/public/sound/MusicaFondo.mp3');
@@ -25,7 +28,7 @@ class EscenaHorizontal extends Phaser.Scene {
         this.load.audio('explosion', '/public/sound/explosion1.mp3');
         this.load.spritesheet('nave1', '/public/img/nave2-Sheet.png', { frameWidth: 64, frameHeight: 54 })
            //boss proyectile
-           this.load.image('meteoro2', '/public/img/meteoroA.png');
+           this.load.image('bulletBoss', '/public/img/bulletBoss.png');
     }
 
     create() {
@@ -37,11 +40,13 @@ class EscenaHorizontal extends Phaser.Scene {
         this.teclaDisparo = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         this.teclaEspacio = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-        this.grupoMeteoros = this.physics.add.group();
-        this.time.addEvent({ delay: 1000, callback: this.generarMeteoros, callbackScope: this, loop: true });
+        this.grupoNave = this.physics.add.group();
+        this.grupoMeteorosVerticales = this.physics.add.group();//meteoritos verticales
+        this.time.addEvent({ delay: 1000, callback: this.generarNave, callbackScope: this, loop: true });
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.physics.add.collider(this.jugador, this.grupoMeteoros, this.gameOver, null, this);
-        this.physics.add.collider(this.grupoProyectiles, this.grupoMeteoros, this.destruirMeteoro, null, this);
+        this.physics.add.collider(this.jugador, this.grupoNave, this.gameOver, null, this);
+        this.physics.add.collider(this.jugador, this.grupoMeteorosVerticales, this.gameOver, null, this);
+        this.physics.add.collider(this.grupoProyectiles, this.grupoNave, this.destruirNave, null, this);
         //boss---------------------------------------------------------------------------------
         this.boss = this.physics.add.sprite(900, 200, 'boss');
         this.boss.visible = false;
@@ -83,10 +88,15 @@ class EscenaHorizontal extends Phaser.Scene {
 
     
 
-    generarMeteoros() {
+    generarNave() {
         const y = Phaser.Math.Between(0, 600);
-        const meteoro = this.grupoMeteoros.create(600, y, 'enemigoA');
-        meteoro.setVelocityX(-100);
+        const nave = this.grupoNave.create(600, y, 'enemigoA');
+        nave.setVelocityX(-100);
+    }
+    generarMeteorosVerticales() {
+        const x = Phaser.Math.Between(0, 800); // Genera meteoros en posiciones x aleatorias
+        const meteoroVertical = this.grupoMeteorosVerticales.create(x, 0, 'meteoroVertical');
+        meteoroVertical.setVelocityY(100); // Velocidad de caída vertical
     }
 
     gameOver(jugador) {
@@ -102,7 +112,6 @@ class EscenaHorizontal extends Phaser.Scene {
     Ganaste(jugador) {
         this.physics.pause(); 
         jugador.setTint(0xff0000);
-        
         this.scene.start('Ganaste', { puntaje: this.puntaje });
         this.MusicaFondo.stop();
         if (this.finalBoss && this.finalBoss.isPlaying) {
@@ -115,9 +124,9 @@ class EscenaHorizontal extends Phaser.Scene {
         proyectil.setVelocityX(400); 
         this.sound.play('disparo');
     }
-    destruirMeteoro(proyectil, meteoro) {
+    destruirNave(proyectil, nave) {
         proyectil.destroy(); // Destruye el proyectil
-        meteoro.destroy(); // Destruye el meteoro
+        nave.destroy(); // Destruye el meteoro
         this.sound.play('explosion');
         this.puntaje += 400; // Aumenta el puntaje o realiza cualquier otra acción que desees
         this.textoPuntaje.setText('Puntaje: ' + this.puntaje); // Actualiza el puntaje en pantalla
@@ -129,6 +138,7 @@ class EscenaHorizontal extends Phaser.Scene {
         // Mostrar el jefe 
         this.boss.visible = true; //Mostramos el jefe
         this.boss.setActive(true); // Activamos las colisiones del jefe para interactuar con las fisicas
+        this.tiempoBoss = 0; // Reiniciar el tiempo del boss
         //this.boss.body.enable = true;
           // Temporizador para disparos del jefe
           this.time.addEvent({
@@ -174,8 +184,7 @@ class EscenaHorizontal extends Phaser.Scene {
         const posY = this.jugador.y - this.boss.y;
         const velocidad = 0.3;
         // Crea y dispara el proyectil en la dirección del jugador
-        const proyectilBoss = this.grupoProyectilesBoss.create(this.boss.x, this.boss.y, 'meteoro2');
-        
+        const proyectilBoss = this.grupoProyectilesBoss.create(this.boss.x, this.boss.y, 'bulletBoss');
         // Asigna velocidad en la dirección del jugador
         proyectilBoss.setVelocityX(posX * velocidad);
         proyectilBoss.setVelocityY(posY * velocidad);
@@ -204,11 +213,10 @@ class EscenaHorizontal extends Phaser.Scene {
 
         this.scene.start('Ganaste', { puntaje: this.puntaje });
         
- 
         
     }
 
-    update() {
+    update(time,delta) {
         this.jugador.setVelocityX(0);
         this.jugador.setVelocityY(0);
         
@@ -235,10 +243,26 @@ class EscenaHorizontal extends Phaser.Scene {
             this.disparar();
         }
             //boss/.--------------------------------------------------------------------------------------------------
-            if (this.puntaje >= 2000 && !this.boss.visible && !this.bossGenerado) {
-                this.aparecerBoss(); // Llamar a una función para manejar la aparición del jefe
-                this.bossGenerado = true; // Marcar que el jefe ha sido generado
-            }
+            
+        if (this.puntaje >= 2000 && !this.boss.visible && !this.bossGenerado) {
+            this.aparecerBoss(); // Llamar a una función para manejar la aparición del jefe
+            this.bossGenerado = true; // Marcar que el jefe ha sido generado
+        }
+
+         if (this.bossActivo) {
+        this.tiempoBoss += delta; // Aumenta el tiempo basado en el tiempo delta
+
+        // Iniciar la generación de meteoros después de 10 segundos
+        if (this.tiempoBoss >= 10000 && !this.meteoritoEnGeneracion) {
+            this.meteoritoEnGeneracion = true; // Marcar que los meteoros han sido generados
+            this.time.addEvent({
+                delay: 2000, // Cada 2 segundos
+                callback: this.generarMeteorosVerticales,
+                callbackScope: this,
+                loop: true
+            });
+        }
+    }
             
             
     ///boss-------------------------------------------------------------------------------------------
