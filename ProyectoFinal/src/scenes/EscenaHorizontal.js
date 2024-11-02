@@ -14,6 +14,11 @@ class EscenaHorizontal extends Phaser.Scene {
         this.meteoritoEnGeneracion = false; //boleano para el boss
     }
 
+
+init(data) {
+    this.puntaje = data.puntaje || 0; // Recibir el puntaje de EscenaMain
+}
+
     preload() {
         this.load.image('space2', '/public/img/space2.png');
 
@@ -140,6 +145,9 @@ class EscenaHorizontal extends Phaser.Scene {
         this.boss.setActive(true); // Activamos las colisiones del jefe para interactuar con las fisicas
         this.tiempoBoss = 0; // Reiniciar el tiempo del boss
         //this.boss.body.enable = true;
+  // Agregar un efecto de shake en la cámara al momento de aparición del jefe
+  this.cameras.main.shake(4000, 0.005); 
+
           // Temporizador para disparos del jefe
           this.time.addEvent({
             delay: 5000, // Dispara cada 5 segundos
@@ -255,6 +263,7 @@ class EscenaHorizontal extends Phaser.Scene {
         // Iniciar la generación de meteoros después de 10 segundos
         if (this.tiempoBoss >= 10000 && !this.meteoritoEnGeneracion) {
             this.meteoritoEnGeneracion = true; // Marcar que los meteoros han sido generados
+            this.cameras.main.shake(15000, 0.004); 
             this.time.addEvent({
                 delay: 2000, // Cada 2 segundos
                 callback: this.generarMeteorosVerticales,
