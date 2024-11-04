@@ -9,7 +9,19 @@
 body{
     margin: 20px;
     padding: 20px;
-    background: linear-gradient(45deg,#0048ff,#1ecf7c,#a75ea7,#d3ab76);
+    background: linear-gradient(65deg,#FFC300,#FF5733,#C70039,#900C3F,#581845);
     background-size: 200% 200%;
     animation: color 12s ease-in-out infinite;
 }
+
+@keyframes color{
+    0%{
+        background-position: 0 35%;
+    }
+    50%{
+        background-position: 100% 35%;
+    }
+    100%{
+        background-position: 0 35%;
+    }
+  }

@@ -1,4 +1,5 @@
 import React from 'react';
+import './AboutUs.css'; 
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import desarrolladores from "../data/desarrolladores.json"; 
@@ -20,6 +21,7 @@ class AboutUs extends React.Component {
                         </div>
                     </Card>
                 ))}
+
             </div>
         );
     }
