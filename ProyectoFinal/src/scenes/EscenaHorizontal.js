@@ -145,9 +145,12 @@ init(data) {
         this.boss.setActive(true); // Activamos las colisiones del jefe para interactuar con las fisicas
         this.tiempoBoss = 0; // Reiniciar el tiempo del boss
         //this.boss.body.enable = true;
+        
   // Agregar un efecto de shake en la cámara al momento de aparición del jefe
+  this.cameras.main.setZoom(1.05);
   this.cameras.main.shake(4000, 0.005); 
 
+  
           // Temporizador para disparos del jefe
           this.time.addEvent({
             delay: 5000, // Dispara cada 5 segundos

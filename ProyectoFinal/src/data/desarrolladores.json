@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Mateo Tarifa 'Spine'",
+        "description": "Soy un aspirador a programador Front-end y desarrollador Web, me encanta la música y los videojuegos. Soy fanático de Gustavo Cerati y mi juego favorito es Terraria...",
+        "image": "/Cat.jpeg"
+    },
+    {
+        "id": 2,
+        "name": "Ruben",
+        "description": "Soy un aspirador a programador Front-end y desarrollador Web, me encanta la música y los videojuegos. Soy fanático de Gustavo Cerati y mi juego favorito es Terraria...",
+        "image": "/imageR.gif"
+    },
+    {
+        "id": 3,
+        "name": "Mateo Tarifa 'Spine' (Quito)",
+        "description": "Soy un aspirador a programador Front-end y desarrollador Web, me encanta la música y los videojuegos. Soy fanático de Gustavo Cerati y mi juego favorito es Terraria...",
+        "image": "/Quito.png"
+    },
+    {
+        "id": 4,
+        "name": "Mateo Tarifa 'Spine' (Cat)",
+        "description": "Soy un aspirador a programador Front-end y desarrollador Web, me encanta la música y los videojuegos. Soy fanático de Gustavo Cerati y mi juego favorito es Terraria...",
+        "image": "/Cat.jpeg"
+    }
+]
