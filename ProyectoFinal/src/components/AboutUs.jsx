@@ -43,6 +43,9 @@ class AboutUs extends React.Component {
                                 Soy Esteban Ibañez un desarrollador que le gusta la parte de la estetica y el diseño en si, tengo 18 años y aspiro a ser un front-end developer
                                 me gusta roblox y hacer modelos 3D en blender :P
                             </Card.Text>
+                            <Card.Text style={{ fontSize: '0.8rem', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                 Link de GitHub: <a href="#"> GitHub </a>
+                            </Card.Text>
                         </Card.Body>
                     </div>
                 </Card>
