@@ -8,7 +8,7 @@ class EscenaHorizontal extends Phaser.Scene {
         this.puntaje = 0;
         this.textoPuntaje = 0;
         this.boss = null;
-        this.vidaBoss = 10;
+        this.vidaBoss = 100;
         this.bossActivo = false;
         this.tiempoBoss = 0; //tiempo del boss
         this.meteoritoEnGeneracion = false; //boleano para el boss
@@ -17,6 +17,7 @@ class EscenaHorizontal extends Phaser.Scene {
 
 init(data) {
     this.puntaje = data.puntaje || 0; // Recibir el puntaje de EscenaMain
+    this.bossGenerado = data.bossGenerado || false;
 }
 
     preload() {
@@ -137,7 +138,7 @@ init(data) {
         this.textoPuntaje.setText('Puntaje: ' + this.puntaje); // Actualiza el puntaje en pantalla
     }
     aparecerBoss() {
-        this.vidaBoss = 10; //Reiniciamos las vidas del jefe
+        this.vidaBoss = 100; //Reiniciamos las vidas del jefe
         this.bossActivo = true;
         
         // Mostrar el jefe 
@@ -145,9 +146,12 @@ init(data) {
         this.boss.setActive(true); // Activamos las colisiones del jefe para interactuar con las fisicas
         this.tiempoBoss = 0; // Reiniciar el tiempo del boss
         //this.boss.body.enable = true;
+        
   // Agregar un efecto de shake en la cámara al momento de aparición del jefe
+  this.cameras.main.setZoom(1.05);
   this.cameras.main.shake(4000, 0.005); 
 
+  
           // Temporizador para disparos del jefe
           this.time.addEvent({
             delay: 5000, // Dispara cada 5 segundos
@@ -252,7 +256,7 @@ init(data) {
         }
             //boss/.--------------------------------------------------------------------------------------------------
             
-        if (this.puntaje >= 2000 && !this.boss.visible && !this.bossGenerado) {
+        if (this.puntaje >= 6000 && !this.boss.visible && !this.bossGenerado) {
             this.aparecerBoss(); // Llamar a una función para manejar la aparición del jefe
             this.bossGenerado = true; // Marcar que el jefe ha sido generado
         }
@@ -263,7 +267,7 @@ init(data) {
         // Iniciar la generación de meteoros después de 10 segundos
         if (this.tiempoBoss >= 10000 && !this.meteoritoEnGeneracion) {
             this.meteoritoEnGeneracion = true; // Marcar que los meteoros han sido generados
-            this.cameras.main.shake(15000, 0.004); 
+            this.cameras.main.shake(30000, 0.004); 
             this.time.addEvent({
                 delay: 2000, // Cada 2 segundos
                 callback: this.generarMeteorosVerticales,

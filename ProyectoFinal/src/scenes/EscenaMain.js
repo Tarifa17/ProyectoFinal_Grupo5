@@ -19,6 +19,7 @@ class EscenaMain extends Phaser.Scene {
         this.load.audio('disparo', '/public/sound/disparoS.mp3');
         this.load.audio('explosion', '/public/sound/explosion1.mp3');
         this.load.spritesheet('nave', '/public/img/sheep-Sheet.png', {frameWidth:32, frameHeight: 30})
+     
     }
 
     create() {
@@ -30,6 +31,7 @@ class EscenaMain extends Phaser.Scene {
         this.grupoObjetoEspecial = this.physics.add.group(); // Grupo para el objeto especial
         this.time.addEvent({ delay: 1000, callback: this.generarMeteoros, callbackScope: this, loop: true });
         this.cursors = this.input.keyboard.createCursorKeys();
+ 
         //collision jugador meteoros
         this.physics.add.collider(this.jugador, this.grupoMeteoros, this.gameOver, null, this);
 // Detectar colisión entre jugador y monedas
@@ -79,7 +81,7 @@ this.anims.create({
         coin.destroy(); // Elimina la moneda (Coin) una vez recogida
         console.log("Moneda recogida!");
         this.scene.start('EscenaBonus', { puntaje: this.puntaje }); // Cambia a la escena "EscenaBonus" y pasa el puntaje
-        this.MusicaFondo.play();
+        this.MusicaFondo.stop(); 
     }
     //metodo para usarse al volver de la EScenaBonus
     init(data) {
@@ -124,10 +126,10 @@ this.anims.create({
         this.puntaje += 1;
         this.textoPuntaje.setText('Puntaje: ' + this.puntaje); 
 
-        if (this.puntaje >= 500) {
+        if (this.puntaje >= 4000) {
             console.log('Cambiando a EscenaHorizontal');
             this.MusicaFondo.stop(); // Detener la música de fondo
-            this.scene.start('EscenaHorizontal', { puntaje: this.puntaje }); // Cambiar a la escena "EscenaHorizontal" y pasar el puntaje
+            this.scene.start('EscenaHorizontal', { puntaje: this.puntaje, bossGenerado: false }); // Cambiar a la escena "EscenaHorizontal" y pasar el puntaje
         }
         
     }
