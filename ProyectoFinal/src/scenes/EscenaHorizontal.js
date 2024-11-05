@@ -12,6 +12,7 @@ class EscenaHorizontal extends Phaser.Scene {
         this.bossActivo = false;
         this.tiempoBoss = 0; //tiempo del boss
         this.meteoritoEnGeneracion = false; //boleano para el boss
+        this.vidasJugador = 3;
     }
 
 
@@ -41,7 +42,8 @@ init(data) {
         this.add.image(400, 300, 'space2');
         this.jugador = this.physics.add.sprite(20, 300, 'nave1');
         this.jugador.setCollideWorldBounds(true);
-
+ 
+        this.textoVidas = this.add.text(16, 50, 'Vidas: ' + this.vidasJugador, { fontSize: '32px', fill: '#fff' });
         this.grupoProyectiles = this.physics.add.group(); // Crear el grupo de proyectiles
         this.teclaDisparo = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         this.teclaEspacio = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
@@ -50,7 +52,7 @@ init(data) {
         this.grupoMeteorosVerticales = this.physics.add.group();//meteoritos verticales
         this.time.addEvent({ delay: 1000, callback: this.generarNave, callbackScope: this, loop: true });
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.physics.add.collider(this.jugador, this.grupoNave, this.gameOver, null, this);
+        this.physics.add.collider(this.jugador, this.grupoNave, this.reducirVidaJugador, null, this);
         this.physics.add.collider(this.jugador, this.grupoMeteorosVerticales, this.gameOver, null, this);
         this.physics.add.collider(this.grupoProyectiles, this.grupoNave, this.destruirNave, null, this);
         //boss---------------------------------------------------------------------------------
@@ -62,7 +64,7 @@ init(data) {
         this.grupoProyectilesBoss = this.physics.add.group(); // Crear el grupo para proyectiles del jefe
 
         // Configura las colisiones
-        this.physics.add.collider(this.jugador, this.grupoProyectilesBoss, this.gameOver, null, this);
+        this.physics.add.collider(this.jugador, this.grupoProyectilesBoss,  this.reducirVidaJugador, null, this);
         //------------------------------Boss---
         
 
@@ -95,7 +97,7 @@ init(data) {
     
 
     generarNave() {
-        const y = Phaser.Math.Between(0, 600);
+        const y = Phaser.Math.Between(50, 550);
         const nave = this.grupoNave.create(600, y, 'enemigoA');
         nave.setVelocityX(-100);
     }
@@ -103,6 +105,21 @@ init(data) {
         const x = Phaser.Math.Between(0, 800); // Genera meteoros en posiciones x aleatorias
         const meteoroVertical = this.grupoMeteorosVerticales.create(x, 0, 'meteoroVertical');
         meteoroVertical.setVelocityY(100); // Velocidad de caída vertical
+    }
+    reducirVidaJugador(jugador, proyectilBoss,nave) {
+        if (proyectilBoss) {
+            proyectilBoss.destroy(); // Destruir el proyectil del jefe
+        }
+        if (nave) {
+            nave.destroy();
+        }
+        this.vidasJugador -= 1; // Reducir las vidas del jugador
+        this.textoVidas.setText('Vidas: ' + this.vidasJugador); // Actualizar texto en pantalla
+
+        // Si las vidas llegan a 0, termina el juego
+        if (this.vidasJugador <= 0) {
+            this.gameOver(jugador);
+        }
     }
 
     gameOver(jugador) {
