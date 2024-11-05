@@ -6,13 +6,14 @@ class EscenaBonus extends Phaser.Scene {
         this.cursors = null;
         this.puntaje = 0;
         this.textoPuntaje = null;
-        this.tiempoRestante = 50; 
+        this.tiempoRestante = 15; 
         this.textoTiempo = null; 
     }
 
     // Recibe el puntaje desde la escena principal
     init(data) {
         this.puntaje = data.puntaje || 0; // Si no hay puntaje, lo establece a 0
+        this.tiempoRestante = 15; // Reiniciar el tiempo cada vez que inicia la escena
     }
 
     preload() {
@@ -83,6 +84,7 @@ class EscenaBonus extends Phaser.Scene {
     // Método que termina la escena bonus después de 50 segundos
     terminarEscenaBonus() {
         // Regresa a la escena principal pasando el puntaje acumulado
+        this.BonusS.stop();
         this.scene.start('EscenaMain', { puntaje: this.puntaje });
     }
 

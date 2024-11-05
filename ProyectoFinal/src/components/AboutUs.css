@@ -1,16 +1,15 @@
 .custom-card{ /* Estilos para cambiar cada custom-card, si quieres un diseño diferente lo cambias desde class name en el jsx */
     
-    background: linear-gradient(#fd961f,#f0ba08, #FF5733);
-    border-radius: 20px;
+    background: linear-gradient(#FFC300,#cfa004, #FF5733);
+    border-radius: 25px;
     border: 1.5px solid  rgb(0, 0, 0);
    
 } 
 
 .Name{ /*Puedes cambiar el color del nombre y el subrayado*/
-    color: rgb(255, 255, 255);
-    font-size: 1.6em;
-    text-decoration: underline;   
-    font-family: 'Roboto', sans-serif;
+    color: rgb(183, 0, 255);
+    text-decoration: underline;
+    text-decoration-color: rgb(0, 0, 0);
     text-decoration-style: solid;
 }
 
