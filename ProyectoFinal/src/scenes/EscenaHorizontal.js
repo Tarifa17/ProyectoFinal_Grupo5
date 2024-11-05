@@ -17,8 +17,11 @@ class EscenaHorizontal extends Phaser.Scene {
 
 
 init(data) {
-    this.puntaje = data.puntaje || 0; // Recibir el puntaje de EscenaMain
+    this.puntaje = data.puntaje || 0;  //Recibir el puntaje de EscenaMain
     this.bossGenerado = data.bossGenerado || false;
+    this.vidasJugador = 3;
+    this.meteoritoEnGeneracion = false;
+    this.tiempoBoss = 0;   
 }
 
     preload() {
