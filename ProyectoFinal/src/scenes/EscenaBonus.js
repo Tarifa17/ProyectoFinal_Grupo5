@@ -13,6 +13,7 @@ class EscenaBonus extends Phaser.Scene {
     // Recibe el puntaje desde la escena principal
     init(data) {
         this.puntaje = data.puntaje || 0; // Si no hay puntaje, lo establece a 0
+                this.tiempoRestante = 15; // Reiniciar el tiempo cada vez que inicia la escena
     }
 
     preload() {
@@ -52,7 +53,7 @@ class EscenaBonus extends Phaser.Scene {
         });
 
         // Temporizador para volver a la escena despues  de 50 segundos
-        this.time.delayedCall(50000, this.terminarEscenaBonus, [], this); // 50 segundos (50,000 ms)
+        this.time.delayedCall(15000, this.terminarEscenaBonus, [], this); // 50 segundos (50,000 ms)
 
         // Controles del jugador
         this.cursors = this.input.keyboard.createCursorKeys();
