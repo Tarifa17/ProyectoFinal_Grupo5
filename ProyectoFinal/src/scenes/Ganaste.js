@@ -14,8 +14,7 @@ class Ganaste extends Phaser.Scene{
        
         this.input.keyboard.once('keydown-SPACE',() => {
            
-  this.scene.start('EscenaMain');
-  this.scene.Puntaje = 0;
+  this.scene.start('EscenaMain', {puntaje: 0});
     });
 }
 
