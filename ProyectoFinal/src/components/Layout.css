@@ -4,12 +4,12 @@
     align-items: center; /* Centra el contenido verticalmente */
     min-height: 80vh; /* Ajusta el tamaño mínimo para centrarlo en el área visible */
     width: 100%;
-    padding: 0 20px;     /* Opcional: Ajusta un padding a los lados */
+    padding: 20px;     /* Opcional: Ajusta un padding a los lados */
 }
 body{
     margin: 20px;
     padding: 20px;
-    background: linear-gradient(65deg,#FFC300,#FF5733,#C70039,#900C3F,#581845);
+    background: linear-gradient(65deg,#fbff00,#FFC300,#FF5733,#C70039,#900C3F,#581845,#b82c8e);
     background-size: 200% 200%;
     animation: color 12s ease-in-out infinite;
 }
@@ -24,4 +24,24 @@ body{
     100%{
         background-position: 0 35%;
     }
+  }
+
+  .bg-body-tertiary{
+    background: linear-gradient(#FFC300,#f0b801, #FF5733);
+    border-radius: 15px;
+    border: 1.5px solid #581845;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  .bg-body-tertiary a:hover {
+    background: linear-gradient(#d439a6,#ac3588, #701956); /* Color de fondo cuando está activo */
+    border-radius: 15px; /* Bordes redondeados */
+    border: 1.5px solid #581845;
+}
+
+  .footer{
+    background: linear-gradient(#FFC300,#cfa004, #FF5733);
+    border-radius: 15px;
+    border: 1.5px solid black;
+    text-align: center;
   }
