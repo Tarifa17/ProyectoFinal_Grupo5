@@ -29,6 +29,16 @@ function CalcularImc() { //Funcion para calcular el peso del usuario
             setNivelPeso('Obesidad');
         }
     };
+    const limpiarCampos = () => {
+        // Metodo para restablecer el valor de todos los campos
+        setPeso('');
+        setAltura('');
+        setNombre('');
+        setApellido('');
+        setImc(null);
+        setNivelPeso('');
+    };
+
 
     return (
         <div className='container' id='bodyIMC'>
@@ -58,6 +68,7 @@ function CalcularImc() { //Funcion para calcular el peso del usuario
                 onChange={(e) => setAltura(e.target.value)} //Actualizamos al estado correspondiente con OnChange
             /> 
             <button onClick={calcularIMC}>Calcular IMC</button> 
+            <button onClick={limpiarCampos}>Limpiar</button>
 
             {imc && ( //Esto se muestra despues de ingresar los resultados
                 <div>
