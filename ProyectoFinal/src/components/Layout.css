@@ -4,11 +4,11 @@
     align-items: center; /* Centra el contenido verticalmente */
     min-height: 80vh; /* Ajusta el tamaño mínimo para centrarlo en el área visible */
     width: 100%;
-    padding: 20px;     /* Opcional: Ajusta un padding a los lados */
+    padding: 10px;     /* Opcional: Ajusta un padding a los lados */
 }
 body{
-    margin: 20px;
-    padding: 20px;
+    margin: 0px;
+    padding: 0px;
     background: linear-gradient(65deg,#fbff00,#FFC300,#FF5733,#C70039,#900C3F,#581845,#b82c8e);
     background-size: 200% 200%;
     animation: color 12s ease-in-out infinite;
@@ -38,10 +38,32 @@ body{
     border-radius: 15px; /* Bordes redondeados */
     border: 1.5px solid #581845;
 }
+.me-auto{
+  background: linear-gradient(#FFC300,#f0b801, #FF5733);
+  border-radius: 10px; /* Bordes redondeados */
+  border: 1.5px solid #581845;
+  height: 45PX;
+}
 
-  .footer{
+
+.dropdown-menu{
+  background: linear-gradient(#FFC300,#f0b801, #FF5733);
+  border-radius: 15px; /* Bordes redondeados */
+  border: 0.1px solid #581845;
+  width: 25px;
+}
+
+.footer{
     background: linear-gradient(#FFC300,#cfa004, #FF5733);
     border-radius: 15px;
     border: 1.5px solid black;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center;
+    padding: 20px;
+  }
+
+  .social-media{
+    padding-left: 10px;
   }
