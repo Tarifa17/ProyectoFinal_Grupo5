@@ -26,9 +26,7 @@ class EscenaHorizontal extends Phaser.Scene {
 
     preload() {
         this.load.image('space2', '/public/img/space2.png');
-
         this.load.image('bullet', '/public/img/bullet.png');
-        //this.load.image('nave', '/public/resources/SS2.png');
         this.load.image('enemigoA', '/public/img/enemigoA.png');
         this.load.image('meteoroVertical', '/public/img/meteoroA.png');
         this.load.image('boss', '/public/img/boss1.png');
@@ -43,46 +41,49 @@ class EscenaHorizontal extends Phaser.Scene {
     }
 
     create() {
+        //agrega el fondo
         this.add.image(400, 300, 'space2');
+
+        //creamos al jugador
         this.jugador = this.physics.add.sprite(20, 300, 'nave1');
         this.jugador.setCollideWorldBounds(true);
 
         this.textoVidas = this.add.text(16, 50, 'Vidas: ' + this.vidasJugador, { fontSize: '32px', fill: '#fff' });
+        this.textoPuntaje = this.add.text(16, 16, 'Puntaje: 0', { fontSize: '32px', fill: '#fff' });
         //vidas generador//
         this.grupoVida = this.physics.add.group(); 
         this.time.addEvent({
             delay: 20000, 
             callback: this.generarVida,
             callbackScope: this,
-            loop: true
+            loop: true //permite que se defina indefinidamente
         });
-
+          //grupos
         this.grupoProyectiles = this.physics.add.group(); // Crear el grupo de proyectiles
+         this.grupoNave = this.physics.add.group();
+         this.grupoMeteorosVerticales = this.physics.add.group();//meteoritos verticales
+         this.grupoProyectilesBoss = this.physics.add.group(); // Crear el grupo para proyectiles del jefe
         this.teclaDisparo = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         this.teclaEspacio = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-        this.grupoNave = this.physics.add.group();
-        this.grupoMeteorosVerticales = this.physics.add.group();//meteoritos verticales
+       
+        
         this.time.addEvent({ delay: 1000, callback: this.generarNave, callbackScope: this, loop: true });
         this.cursors = this.input.keyboard.createCursorKeys();
+        //collisiones
         this.physics.add.collider(this.jugador, this.grupoNave, this.reducirVidaJugador, null, this);
         this.physics.add.collider(this.jugador, this.grupoMeteorosVerticales, this.gameOver, null, this);
         this.physics.add.collider(this.grupoProyectiles, this.grupoNave, this.destruirNave, null, this);
+        this.physics.add.collider(this.jugador, this.grupoProyectilesBoss, this.reducirVidaJugador, null, this);
         this.physics.add.collider(this.jugador, this.grupoVida, this.aumentarVida, null, this);
-
-        //boss---------------------------------------------------------------------------------
+        //creamos el boss
         this.boss = this.physics.add.sprite(900, 200, 'boss');
         this.boss.visible = false;
         this.boss.setActive(false);
-        //----------------------------------------------proyectileBoss---------
-        // ... configuración inicial existente ...
-        this.grupoProyectilesBoss = this.physics.add.group(); // Crear el grupo para proyectiles del jefe
+        
+        
 
-        // Configura las colisiones
-        this.physics.add.collider(this.jugador, this.grupoProyectilesBoss, this.reducirVidaJugador, null, this);
-        //------------------------------Boss---
-
-
+            //crea animaciones para el jugador
         this.anims.create({
             key: 'up',
             frames: [{ key: 'nave1', frame: 0 }],
@@ -100,15 +101,10 @@ class EscenaHorizontal extends Phaser.Scene {
             frames: [{ key: 'nave1', frame: 2 }],
             frameRate: 20
         })
-
-
-
-        this.textoPuntaje = this.add.text(16, 16, 'Puntaje: 0', { fontSize: '32px', fill: '#fff' });
-
+          //musica de fondo
         this.MusicaFondo = this.sound.add('MusicaFondo', { loop: true });
         this.MusicaFondo.play();
     }
-
 
 
     generarNave() {
@@ -152,6 +148,7 @@ class EscenaHorizontal extends Phaser.Scene {
         this.physics.pause();
         jugador.setTint(0xff0000);
         console.log('Game Over');
+        // Inicia la escena 'gameOver' y le pasa el puntaje actual como parámetro
         this.scene.start('GameOver', { puntaje: this.puntaje });
         this.MusicaFondo.stop();
         if (this.finalBoss && this.finalBoss.isPlaying) {
@@ -161,6 +158,7 @@ class EscenaHorizontal extends Phaser.Scene {
     Ganaste(jugador) {
         this.physics.pause();
         jugador.setTint(0xff0000);
+        // Inicia la escena 'Ganaste' y le pasa el puntaje actual como parámetro
         this.scene.start('Ganaste', { puntaje: this.puntaje });
         this.MusicaFondo.stop();
         if (this.finalBoss && this.finalBoss.isPlaying) {
@@ -200,7 +198,7 @@ class EscenaHorizontal extends Phaser.Scene {
             delay: 5000, // Dispara cada 5 segundos
             callback: this.dispararBoss,
             callbackScope: this,
-            loop: true
+            loop: true //permite que se defina indefinidamente
         });
 
         // Animación de entrada del jefe 
@@ -265,7 +263,7 @@ class EscenaHorizontal extends Phaser.Scene {
         boss.destroy(); // Destruir al jefe
         this.finalBoss.stop();
         console.log('El jefe ha sido derrotado!');
-
+// Inicia la escena 'Ganaste' y le pasa el puntaje actual como parámetro
         this.scene.start('Ganaste', { puntaje: this.puntaje });
 
 
@@ -297,8 +295,8 @@ class EscenaHorizontal extends Phaser.Scene {
         if (Phaser.Input.Keyboard.JustDown(this.teclaDisparo) || Phaser.Input.Keyboard.JustDown(this.teclaEspacio)) {
             this.disparar();
         }
-        //boss/.--------------------------------------------------------------------------------------------------
-
+        
+             //(si el puntaje es mayor a 6mil llama a una funcion y deja )
         if (this.puntaje >= 6000 && !this.boss.visible && !this.bossGenerado) {
             this.aparecerBoss(); // Llamar a una función para manejar la aparición del jefe
             this.bossGenerado = true; // Marcar que el jefe ha sido generado
@@ -311,18 +309,17 @@ class EscenaHorizontal extends Phaser.Scene {
             if (this.tiempoBoss >= 10000 && !this.meteoritoEnGeneracion) {
                 this.meteoritoEnGeneracion = true; // Marcar que los meteoros han sido generados
                 this.cameras.main.shake(30000, 0.004);
-                this.time.addEvent({
+                this.time.addEvent({ // evento para generar meteoros verticales de manera continua cada 2 seg
                     delay: 2000, // Cada 2 segundos
-                    callback: this.generarMeteorosVerticales,
+                    callback: this.generarMeteorosVerticales,//llama a un metodo para generar meteoros si cumple la condicion
                     callbackScope: this,
-                    loop: true
+                    loop: true //permite que se defina indefinidamente
                 });
             }
         }
 
 
-        ///boss-------------------------------------------------------------------------------------------
-
+     
     }
 }
 export default EscenaHorizontal;

@@ -11,9 +11,9 @@ class GameOver extends Phaser.Scene{
     create(){
         this.add.text(400,200, 'GameOver', {fontSize: '64px', fill:'#fff'}).setOrigin(0.5);
         this.add.text(400,300,'Puntaje:'+this.puntaje,{fontSize : '64px',fill: '#fff'}).setOrigin(0.5);
-        this.add.text(400,400,'Barra espaciadora para volver a jugar',{fontSize : '34px',fill: '#fff'}).setOrigin(0.5);
+        this.add.text(400,400,' "R" para volver a jugar',{fontSize : '34px',fill: '#fff'}).setOrigin(0.5);
        
-        this.input.keyboard.once('keydown-SPACE',() => {
+        this.input.keyboard.once('keydown-R',() => {
            
   this.scene.start('EscenaMain', {puntaje : 0});
     });
