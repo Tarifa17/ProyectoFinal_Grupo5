@@ -11,7 +11,7 @@ function Home() {
           src="/FPW.png" // Reemplaza con la ruta de tu imagen
           alt="First slide"
         />
-        <Carousel.Caption>
+        <Carousel.Caption className='Decorations'>
           <h3>Fundamentos De Programacion Web</h3>
           <p>Grupo 5</p>
         </Carousel.Caption>
@@ -22,7 +22,7 @@ function Home() {
           src="/Phaser.png" // Reemplaza con la ruta de tu imagen
           alt="Second slide"
         />
-        <Carousel.Caption>
+        <Carousel.Caption className='Decorations'>
           <h3>Juego Phaser</h3>
           <p>Proyecto hecho con Phaser; Planea el espacio disparando y esquivando enemigos y enfrenta su jefe</p>
         </Carousel.Caption>
@@ -33,7 +33,7 @@ function Home() {
           src="/GestorBilleteras.png" // Reemplaza con la ruta de tu imagen
           alt="Third slide"
         />
-        <Carousel.Caption>
+        <Carousel.Caption className='Decorations'>
           <h3>Gestor De Billeteras</h3>
           <p>texto3</p>
         </Carousel.Caption>
@@ -44,7 +44,7 @@ function Home() {
           src="/IMC.png" // Reemplaza con la ruta de tu imagen
           alt="Third slide"
         />
-        <Carousel.Caption>
+        <Carousel.Caption className='Decorations'>
           <h3>Indice de Masa Corporal</h3>
           <p>texto3</p>
         </Carousel.Caption>
@@ -56,7 +56,7 @@ function Home() {
           src="/DesafioMatematico.png" // Reemplaza con la ruta de tu imagen
           alt="Third slide"
         />
-        <Carousel.Caption>
+        <Carousel.Caption className='Decorations'>
           <h3>Desafio Matematico</h3>
           <p>texto3</p>
         </Carousel.Caption>
