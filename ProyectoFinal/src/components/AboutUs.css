@@ -1,7 +1,8 @@
 .Card-type{ /* Estilos para cambiar cada custom-card, si quieres un diseño diferente lo cambias desde class name en el jsx */
-    background: linear-gradient(#FFC300,#cfa004, #FF5733);
-    border-radius: 20px;
-    border: 1.5px solid  rgb(0, 0, 0);
+    background: linear-gradient(45deg,#ffa600,#f85718, #ffa600,#f85718, #ffa600);
+    border-radius: 5px;
+    border: 2px solid  rgb(0, 0, 0);
+    box-shadow: 0 3rem 3rem -1rem rgb(29, 0, 29);  
 } 
 
 .Name{ /*Puedes cambiar el color del nombre y el subrayado*/
@@ -12,6 +13,6 @@
 }
 
 .ilustracion{ /*borde de la imagen*/
-    border-radius: 15px;
-    border: 1.5px solid  rgb(0, 0, 0);
+    border-radius: 5px;
+    border: 2px solid  rgb(0, 0, 0)
 }
