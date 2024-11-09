@@ -3,5 +3,34 @@
     max-width: 100%;
     justify-content: center; /* Centra horizontalmente */
     align-items: center;     /* Centra verticalmente */
+    background: linear-gradient(#ff5e00,#ffae00, #FF5733);
+    border-radius: 5px;
+    border: 5px solid #fd4e27;
+    box-shadow: 0 0 20px rgb(255, 94, 0); /* Sombra ligera */
+    padding: 10px;
  
+}
+.card-body{/*Titulo Administrador de Billetera*/
+    background: linear-gradient(#ff5e00,#ffae00, #FF5733);
+    padding: 10px;
+}
+.card{/*Card*/
+    background-color: #ffae00;
+}
+.list-group-flush{
+    background-color: #ffae00;
+}
+.flex-container{
+    background-color: #ffae00;
+    padding: 10px;
+}
+.btn{
+    background-color: #FF5733;
+    margin: 5px;
+    color: black;
+}
+
+.list-group-item{
+    background-color: #ffae00;
+    padding: 10px;
 }

@@ -1,11 +1,12 @@
 .Testing{
     width: 100%;
     border: 5px solid #000000;
+    border-radius: 5px;
 }
 
 .Decorations{
-    background-color: #000000;
-    filter: blur(0.5px);
+    background-color: #d66800;
     border-radius: 5px;
+    border: 2px solid #000000;
     color: rgb(255, 255, 255);
 }

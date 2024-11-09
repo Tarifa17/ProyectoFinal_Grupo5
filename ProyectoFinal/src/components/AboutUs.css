@@ -5,13 +5,6 @@
     box-shadow: 0 3rem 3rem -1rem rgb(29, 0, 29);  
 } 
 
-.Name{ /*Puedes cambiar el color del nombre y el subrayado*/
-    color: rgb(183, 0, 255);
-    text-decoration: underline;
-    text-decoration-color: rgb(0, 0, 0);
-    text-decoration-style: solid;
-}
-
 .ilustracion{ /*borde de la imagen*/
     border-radius: 5px;
     border: 2px solid  rgb(0, 0, 0)

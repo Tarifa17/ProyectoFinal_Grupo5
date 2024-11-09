@@ -10,7 +10,7 @@
 
 /*Body*/
 body{  
-    margin: 0px;  /**/
+    margin: 0px; 
     padding: 0px;
     background: linear-gradient(65deg,#ff5233,#ff5233,#FF5733,#C70039,#900C3F,#581845,#b82c8e);
     background-size: 200% 200%;
@@ -61,6 +61,7 @@ body{
 
 .footer{
     background: linear-gradient(#1b1b1b,#3f3e3e, #1b1b1b);
+    width: 100%;
     border-radius: 5px;
     border: 2px solid black;
     color: rgb(255, 255, 255);
