@@ -33,9 +33,7 @@ function Layout() {
             <div className='footer'>
             <p> &copy; 2024 Derechos Reservados para el GRUPO 5 FPW2024 </p>    
             <div href="" className='social-media'> 
-            <a href="#">Facebook</a>   
-            <a href="#">Instagram</a> 
-            <a href="#">GitHub</a> 
+            <a href="https://github.com/Tarifa17/ProyectoFinal_Grupo5">GitHub</a> 
             </div>             
             </div>
         </footer>

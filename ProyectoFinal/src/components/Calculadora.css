@@ -1,19 +1,21 @@
-
-
 #bodyIMC {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Espacio entre cada elemento */
-    max-width: 300px; /* Para que no ocupe todo el ancho de la pantalla */
+    gap: 25px; /* Espacio entre cada elemento */
+    max-width: 800px; /* Para que no ocupe todo el ancho de la pantalla */
     margin: 0 auto; /* Centrar el contenedor*/
     padding: 20px;    /* Añadir algo de espacio alrededor */
-    background-color: #42466d; /* Fondo claro */
     border-radius: 30px; /* Bordes redondeados */
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    box-shadow: 0 0 20px rgb(255, 94, 0); /* Sombra ligera */
+    background: linear-gradient(#ff5e00,#ffae00, #FF5733); /* Fondo con un gradiente de colores */
+    color: white; /*Color de letras seran blancas*/
 }
 
 input, button {
     width: 100%; /* Hacer que los inputs y botones ocupen todo el ancho del contenedor */
     padding: 10px; /* Espacio interno para mejor apariencia */
     box-sizing: border-box; /* Para incluir el padding en el tamaño total */
+    background-color: #272727; /*Da un color de fondo a los Inputs*/
+    color: white; /*las letras dentro de los inputs seran blancas*/
+    border-radius: 5px; /*Brinda un borde a los botones*/
 }
