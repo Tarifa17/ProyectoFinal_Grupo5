@@ -3,6 +3,7 @@ import Button from "react-bootstrap/esm/Button";
 import Card from 'react-bootstrap/Card';
 import SumaResta from './SumaResta';
 import MultiplicacionDivision from "./MultiplicacionDivision";
+import Operaciones from "./Operaciones";
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -16,8 +17,8 @@ function Dificultad(){
             navigate('/MultiplicacionDivision'); // Mantén esto para futuras referencias, como '/multiplicacion'
             
         } else if (nivel === 'Hard') {
-            // Mantén esto para futuras referencias, como '/fraccionDecimal'
-            console.log("Redirigir a Fracción y Decimal");
+           
+           navigate('/Operaciones');
         }
     }
     return(
