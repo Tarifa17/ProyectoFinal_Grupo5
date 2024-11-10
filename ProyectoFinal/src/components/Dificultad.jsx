@@ -23,8 +23,8 @@ function Dificultad(){
     }
     return(
         <div className="container">
-                <Card style={{ width: '18rem' }}>
-                    <Card.Img className="Imagen" variant="top" src="public/nado.jpeg" width={250} />
+                <Card style={{ width: '20rem' }}>
+                    <Card.Img className="Imagen" variant="top" src="./skibidi-math.jpg" width={250} />
                     <Card.Body>
                         <Card.Title><h2>Elige la dificultad</h2></Card.Title>
                         <Button variant="warning" onClick={ ()=>elegirDificultad('Easy')}>Easy</Button>

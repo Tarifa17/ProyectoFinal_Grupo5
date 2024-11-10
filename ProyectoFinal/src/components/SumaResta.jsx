@@ -52,8 +52,8 @@ function SumaResta() {
 
     return (
         <div className="container-flex">
-            <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src="public/nado.jpeg" width={250} />
+            <Card style={{ width: '20rem' }}>
+                <Card.Img variant="top" src="./skibidi-math.jpg" width={250} />
                 <Card.Body>
                     <Card.Title>
                         <h2>

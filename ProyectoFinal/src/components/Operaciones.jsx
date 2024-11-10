@@ -53,7 +53,8 @@ function Operaciones() {
 
   return ( 
     <div className="container-flex"> 
-      <Card style={{ width: '18rem' }}> 
+      <Card style={{ width: '20rem' }}> 
+      <Card.Img className="Imagen" variant="top" src="./skibidi-math.jpg" width={250} />
         <Card.Body> 
           <Card.Title> 
             <h2>{operacion.texto}</h2> 
