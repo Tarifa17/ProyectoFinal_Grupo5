@@ -12,13 +12,13 @@ function Dificultad(){
 
     const elegirDificultad = (nivel) =>{
         if (nivel === 'Easy') {
-            navigate('/SumaResta'); //Vamos hacia SumaResta
+            navigate('/SumaResta'); //Vamos hacia SumaResta / nivel facil
         } else if (nivel === 'Medium') {
-            navigate('/MultiplicacionDivision'); // Mantén esto para futuras referencias, como '/multiplicacion'
+            navigate('/MultiplicacionDivision'); // Vamos hacia el nivel Medio / MultiplicacionDivison
             
         } else if (nivel === 'Hard') {
            
-           navigate('/Operaciones');
+           navigate('/Operaciones'); // Vamos hacia el nivel dificil / Operaciones
         }
     }
     return(
