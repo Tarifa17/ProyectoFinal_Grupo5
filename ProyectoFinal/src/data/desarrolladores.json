@@ -8,10 +8,10 @@
     },
     {
         "id": 2,
-        "name": "Ruben",
-        "description": "Soy un aspirador a programador Front-end y desarrollador Web, me encanta la música y los videojuegos. Soy fanático de Gustavo Cerati y mi juego favorito es Terraria...",
+        "name": "Ruben Flores ",
+        "description": " Actualmente soy estudiante de programación y tengo como meta convertirme en diseñador de personajes 3D. Aspiro a especializarme en el desarrollo de videojuegos y en el uso de motores como Unity y Unreal Engine.",
         "image": "/imageR.gif",
-        "github": "https://github.com/desarrollador1"
+        "github": "https://github.com/Rubenxdf"
     },
     {
         "id": 3,
