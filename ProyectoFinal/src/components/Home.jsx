@@ -35,7 +35,7 @@ function Home() {
         />
         <Carousel.Caption className='Decorations'>
           <h3>Gestor De Billeteras</h3>
-          <p>texto3</p>
+          <p>Gestiona las distintas billeteras, utilizacion de variables, arreglos y funciones </p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -46,7 +46,7 @@ function Home() {
         />
         <Carousel.Caption className='Decorations'>
           <h3>Indice de Masa Corporal</h3>
-          <p>texto3</p>
+          <p>Utilizacion de Javasript </p>
         </Carousel.Caption>
       </Carousel.Item>
 
@@ -58,7 +58,7 @@ function Home() {
         />
         <Carousel.Caption className='Decorations'>
           <h3>Desafio Matematico</h3>
-          <p>texto3</p>
+          <p>Proyecto con React</p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
