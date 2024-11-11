@@ -7,9 +7,13 @@ import Dificultad from './Dificultad';
 
 function Juego(){
     const [isPlaying, setIsPlaying] = useState(false);
-
+    
     const VerificarClick = () => {
+         // Reproducir sonido al hacer clic
+         const sonido = new Audio('./sound/desafioMatematico.mp3');
+         sonido.play();
         setIsPlaying(true); 
+        
     };
     return(
         <div className='container-flex'>
@@ -24,6 +28,8 @@ function Juego(){
                         <Button variant="primary" onClick={VerificarClick}>Play</Button>
                     </Card.Body>
                 </Card>
+                
+               
             </div>
         )}
     </div>
