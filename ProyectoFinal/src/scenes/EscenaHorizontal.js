@@ -30,7 +30,7 @@ class EscenaHorizontal extends Phaser.Scene {
         this.load.image('enemigoA', '/public/img/enemigoA.png');
         this.load.image('meteoroVertical', '/public/img/meteoroA.png');
         this.load.image('boss', '/public/img/boss1.png');
-        this.load.image('vida', '/public/img/vida.png'); 
+        this.load.image('vida', '/public/img/vida.png');
         this.load.audio('finalBoss', '/public/sound/finalBoss.mp3');
         this.load.audio('MusicaFondo', '/public/sound/MusicaFondo.mp3');
         this.load.audio('disparo', '/public/sound/disparoS.mp3');
@@ -51,23 +51,23 @@ class EscenaHorizontal extends Phaser.Scene {
         this.textoVidas = this.add.text(16, 50, 'Vidas: ' + this.vidasJugador, { fontSize: '32px', fill: '#fff' });
         this.textoPuntaje = this.add.text(16, 16, 'Puntaje: 0', { fontSize: '32px', fill: '#fff' });
         //vidas generador//
-        this.grupoVida = this.physics.add.group(); 
+        this.grupoVida = this.physics.add.group();
         this.time.addEvent({
-            delay: 20000, 
+            delay: 20000,
             callback: this.generarVida,
             callbackScope: this,
             loop: true //permite que se defina indefinidamente
         });
-          //grupos
+        //grupos
         this.grupoProyectiles = this.physics.add.group(); // Crear el grupo de proyectiles
-         this.grupoNave = this.physics.add.group();
-         this.grupoMeteorosVerticales = this.physics.add.group();//meteoritos verticales
-         this.grupoProyectilesBoss = this.physics.add.group(); // Crear el grupo para proyectiles del jefe
+        this.grupoNave = this.physics.add.group();
+        this.grupoMeteorosVerticales = this.physics.add.group();//meteoritos verticales
+        this.grupoProyectilesBoss = this.physics.add.group(); // Crear el grupo para proyectiles del jefe
         this.teclaDisparo = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
         this.teclaEspacio = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
-       
-        
+
+
         this.time.addEvent({ delay: 1000, callback: this.generarNave, callbackScope: this, loop: true });
         this.cursors = this.input.keyboard.createCursorKeys();
         //collisiones
@@ -80,10 +80,10 @@ class EscenaHorizontal extends Phaser.Scene {
         this.boss = this.physics.add.sprite(900, 200, 'boss');
         this.boss.visible = false;
         this.boss.setActive(false);
-        
-        
 
-            //crea animaciones para el jugador
+
+
+        //crea animaciones para el jugador
         this.anims.create({
             key: 'up',
             frames: [{ key: 'nave1', frame: 0 }],
@@ -101,7 +101,7 @@ class EscenaHorizontal extends Phaser.Scene {
             frames: [{ key: 'nave1', frame: 2 }],
             frameRate: 20
         })
-          //musica de fondo
+        //musica de fondo
         this.MusicaFondo = this.sound.add('MusicaFondo', { loop: true });
         this.MusicaFondo.play();
     }
@@ -138,11 +138,11 @@ class EscenaHorizontal extends Phaser.Scene {
         vida.setVelocityX(-100);
     }
     aumentarVida(jugador, vidaItem) {
-        vidaItem.destroy(); 
-        this.vidasJugador += 1; 
-        this.textoVidas.setText('Vidas: ' + this.vidasJugador); 
+        vidaItem.destroy();
+        this.vidasJugador += 1;
+        this.textoVidas.setText('Vidas: ' + this.vidasJugador);
     }
-    
+
 
     gameOver(jugador) {
         this.physics.pause();
@@ -226,6 +226,7 @@ class EscenaHorizontal extends Phaser.Scene {
 
         console.log('El jefe ha aparecido!');
 
+        //Reducimos las vidas del jefe cada vez que haya un impacto con las balas
         this.physics.add.overlap(this.grupoProyectiles, this.boss, this.reducirVidaBoss, null, this);
     }
     // Método para disparar un proyectil desde el jefe hacia el jugador
@@ -261,9 +262,9 @@ class EscenaHorizontal extends Phaser.Scene {
     derrotarBoss(boss) {
         this.bossActivo = false; // Marcar el jefe como inactivo
         boss.destroy(); // Destruir al jefe
-        this.finalBoss.stop();
+        this.finalBoss.stop(); //Parar la musica
         console.log('El jefe ha sido derrotado!');
-// Inicia la escena 'Ganaste' y le pasa el puntaje actual como parámetro
+        // Inicia la escena 'Ganaste' y le pasa el puntaje actual como parámetro
         this.scene.start('Ganaste', { puntaje: this.puntaje });
 
 
@@ -295,8 +296,8 @@ class EscenaHorizontal extends Phaser.Scene {
         if (Phaser.Input.Keyboard.JustDown(this.teclaDisparo) || Phaser.Input.Keyboard.JustDown(this.teclaEspacio)) {
             this.disparar();
         }
-        
-             //(si el puntaje es mayor a 6mil llama a una funcion y deja )
+
+        //(si el puntaje es mayor a 6mil llama a una funcion para aparecer el boss )
         if (this.puntaje >= 6000 && !this.boss.visible && !this.bossGenerado) {
             this.aparecerBoss(); // Llamar a una función para manejar la aparición del jefe
             this.bossGenerado = true; // Marcar que el jefe ha sido generado
@@ -319,7 +320,7 @@ class EscenaHorizontal extends Phaser.Scene {
         }
 
 
-     
+
     }
 }
 export default EscenaHorizontal;
