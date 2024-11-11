@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './GestorBilletera.css'
 
+// Componente funcional para guardar datos sobre las transacciones de una billetera de un usuario
 function GestorBilletera() {
   const [usuario, setUsuario] = useState('');
   const [billetera, setBilletera] = useState('');
@@ -11,7 +12,7 @@ function GestorBilletera() {
   const [listaTransacciones, setListaTransacciones] = useState([]);
   const [resultados, setResultados] = useState([]);
 
-  // Función para guardar datos
+  // Función callback para guardar datos
   const guardarDatos = () => {
     setListaUsuarios([...listaUsuarios, usuario]); //Guardamos los datos en la Lista de Usuarios
     setListaBilleteras([...listaBilleteras, billetera]); //Guardamos los datos en la Lista de Billeteras
@@ -21,12 +22,12 @@ function GestorBilletera() {
     setTransaccion(''); //Limpiamos los campos despues de guardar los datos
   };
 
-  // Función para mostrar los datos guardados
+  // Función callback para mostrar los datos guardados
   const mostrarDatos = () => {
-    return listaUsuarios.map((usuario, index) => ( //Utilizamos map para iterar sobre el array de usuarios y generamos un elemento para  cada usuario con sus datos
+    return listaUsuarios.map((usuario, index) => ( //Utilizamos map para iterar sobre el array de usuarios y generamos un elemento para cada usuario con sus datos
      //Renderizamos la lista con los datos del usuario y usamos su posicion en el array como key
      <li key={index} className="list-group-item"> 
-        {usuario} - {listaBilleteras[index]} - {listaTransacciones[index]}
+        {usuario} - {listaBilleteras[index]} - {listaTransacciones[index]} 
       </li>
     ));
   };
@@ -61,7 +62,7 @@ function GestorBilletera() {
               placeholder="Nombre de Usuario"
               className="form-control"
               value={usuario}
-              onChange={(e) => setUsuario(e.target.value)}
+              onChange={(e) => setUsuario(e.target.value)} //Actualizamos al estado correspondiente con OnChange
             />
           </li>
           <li className="list-group-item">
@@ -70,7 +71,7 @@ function GestorBilletera() {
               placeholder="Billetera"
               className="form-control"
               value={billetera}
-              onChange={(e) => setBilletera(e.target.value)}
+              onChange={(e) => setBilletera(e.target.value)} //Actualizamos al estado correspondiente con OnChange
             />
           </li>
           <li className="list-group-item">
@@ -79,7 +80,7 @@ function GestorBilletera() {
               placeholder="N° Transacciones"
               className="form-control"
               value={transaccion}
-              onChange={(e) => setTransaccion(e.target.value)}
+              onChange={(e) => setTransaccion(e.target.value)} //Actualizamos al estado correspondiente con OnChange
             />
           </li>
           <li className="list-group-item">
@@ -93,9 +94,11 @@ function GestorBilletera() {
           </li>
         </ul>
         <div className="flex-container mt-3">
-          <button className="btn btn-outline-secondary me-2" onClick={guardarDatos}>
+          {/* Boton que al ser presionado llama a la funcion callback guardarDatos */}
+          <button className="btn btn-outline-secondary me-2" onClick={guardarDatos}> 
             Guardar
           </button>
+          {/* Boton que al ser presionado llama a la funciona callback mostrarMayor */}
           <button className="btn btn-outline-secondary me-2" onClick={mostrarMayor}>
             Mayor N° Trans.
           </button>
@@ -104,11 +107,13 @@ function GestorBilletera() {
 
       <div className="container mt-4">
         <h5>Lista de Usuarios</h5>
+        {/* Se enlistan los datos de la lista que contiene mostrarDatos*/}
         <ul className="list-group">{mostrarDatos()}</ul>
       </div>
 
       <div className="container mt-4">
         <h5>Resultados</h5>
+        {/* Recorremos el array resultados, y para cada elemento creamos un parrafo para el contenido de cada resultado*/}
         {resultados.map((resultado, index) => (
           <p key={index}>{resultado}</p>
         ))}

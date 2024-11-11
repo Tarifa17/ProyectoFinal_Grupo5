@@ -33,7 +33,8 @@ function JuegoPhaser(){
         };
     }, []);
 return(
-    <div className="container-flex" id="game">
+    // Acomodamos el juego dentro de un div mediante su parent llamado game
+    <div className="container-flex" id="game"> 
     
     </div>
 ) 
