@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './Calculadora.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function CalcularImc() { //Funcion para calcular el peso del usuario
+// Componente funcional para calcular el peso del usuario
+function CalcularImc() { 
     const [peso, setPeso] = useState('');
     const [altura, setAltura] = useState('');
     const [nombre, setNombre] = useState('');
@@ -10,6 +11,7 @@ function CalcularImc() { //Funcion para calcular el peso del usuario
     const [imc, setImc] = useState(null);
     const [nivelPeso, setNivelPeso] = useState('');
 
+    //Funcion callback para calcular el IMC
     const calcularIMC = () => {
         const alturaMetros = parseFloat(altura); //Convertimos los datos del usuario a flotantes
         const pesoKg = parseFloat(peso); //Convertimos los datos del usuario a flotantes
@@ -20,17 +22,18 @@ function CalcularImc() { //Funcion para calcular el peso del usuario
         setImc(imcCalculado.toFixed(2)); //El resultado del calculo lo redondeamos a maximo 2 decimales
 
         if (imcCalculado < 18.5) {
-            setNivelPeso('Bajo Peso');
+            setNivelPeso('Bajo Peso'); // Establecemos una condicion y si el resultado es menor a 18.5, la variable de peso cambia a este valor
         } else if (imcCalculado >= 18.5 && imcCalculado <= 24.9) {
-            setNivelPeso('Peso Saludable');
+            setNivelPeso('Peso Saludable'); // Establecemos una condicion y si el resultado esta entre 18.5 y 24.9, la variable de peso cambia a este valor
         } else if (imcCalculado >= 25.0 && imcCalculado <= 29.9) {
-            setNivelPeso('Sobrepeso');
+            setNivelPeso('Sobrepeso'); // Establecemos una condicion y si el resultado esta entre 25 y 29.9, la variable de peso cambia a este valor
         } else {
-            setNivelPeso('Obesidad');
+            setNivelPeso('Obesidad'); // Por el contrario, si ninguno de los resultados anteriores es correcto, la variable peso cambia a este valor
         }
     };
+    // Funcion callback para restablecer el valor de todos los campos a vacio y el IMC nulo 
     const limpiarCampos = () => {
-        // Metodo para restablecer el valor de todos los campos
+       
         setPeso('');
         setAltura('');
         setNombre('');
@@ -47,7 +50,7 @@ function CalcularImc() { //Funcion para calcular el peso del usuario
                 type="text" 
                 placeholder="Nombre" 
                 value={nombre} 
-                onChange={(e) => setNombre(e.target.value)} 
+                onChange={(e) => setNombre(e.target.value)} //Actualizamos al estado correspondiente con OnChange
             />
             <input 
                 type="text" 
@@ -67,8 +70,8 @@ function CalcularImc() { //Funcion para calcular el peso del usuario
                 value={altura} 
                 onChange={(e) => setAltura(e.target.value)} //Actualizamos al estado correspondiente con OnChange
             /> 
-            <button onClick={calcularIMC}>Calcular IMC</button> 
-            <button onClick={limpiarCampos}>Limpiar</button>
+            <button onClick={calcularIMC}>Calcular IMC</button> {/* Boton que al haecr click llama a la funcion callback para calcular el IMC */}
+            <button onClick={limpiarCampos}>Limpiar</button> {/* Boton que al haecr click llama a la funcion callback para poner el valor de los campos en vacio*/}
 
             {imc && ( //Esto se muestra despues de ingresar los resultados
                 <div>
