@@ -1,7 +1,8 @@
 import Phaser from "phaser";
 class EscenaHorizontal extends Phaser.Scene {
-
+    //El constructor es el método inicializador de la clase EscenaHorizontal.
     constructor() {
+        //definimos estas propiedades par evitar errores al reiniciar el juego
         super({ key: 'EscenaHorizontal' });
         this.jugador = null;
         this.cursors = null;
@@ -15,7 +16,7 @@ class EscenaHorizontal extends Phaser.Scene {
         this.vidasJugador = 3;
     }
 
-
+//init se ejecuta al iniciar la escena y permite recibir datos de otra escena
     init(data) {
         this.puntaje = data.puntaje || 0;  //Recibir el puntaje de EscenaMain
         this.bossGenerado = data.bossGenerado || false;
@@ -25,6 +26,7 @@ class EscenaHorizontal extends Phaser.Scene {
     }
 
     preload() {
+         // Cargar imágenes y sonidos necesarios para la escena
         this.load.image('space2', '/public/img/space2.png');
         this.load.image('bullet', '/public/img/bullet.png');
         this.load.image('enemigoA', '/public/img/enemigoA.png');
@@ -60,22 +62,22 @@ class EscenaHorizontal extends Phaser.Scene {
         });
         //grupos
         this.grupoProyectiles = this.physics.add.group(); // Crear el grupo de proyectiles
-        this.grupoNave = this.physics.add.group();
-        this.grupoMeteorosVerticales = this.physics.add.group();//meteoritos verticales
-        this.grupoProyectilesBoss = this.physics.add.group(); // Crear el grupo para proyectiles del jefe
-        this.teclaDisparo = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
-        this.teclaEspacio = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+         this.grupoNave = this.physics.add.group();
+         this.grupoMeteorosVerticales = this.physics.add.group();//meteoritos verticales
+         this.grupoProyectilesBoss = this.physics.add.group(); // Crear el grupo para proyectiles del jefe
+        this.teclaDisparo = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E); //  Asigna la tecla E para disparar.
+        this.teclaEspacio = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE); //Asigna la tecla ESPACIO como una tecla adicional para otro tipo de acción
 
 
 
         this.time.addEvent({ delay: 1000, callback: this.generarNave, callbackScope: this, loop: true });
         this.cursors = this.input.keyboard.createCursorKeys();
         //collisiones
-        this.physics.add.collider(this.jugador, this.grupoNave, this.reducirVidaJugador, null, this);
-        this.physics.add.collider(this.jugador, this.grupoMeteorosVerticales, this.gameOver, null, this);
-        this.physics.add.collider(this.grupoProyectiles, this.grupoNave, this.destruirNave, null, this);
-        this.physics.add.collider(this.jugador, this.grupoProyectilesBoss, this.reducirVidaJugador, null, this);
-        this.physics.add.collider(this.jugador, this.grupoVida, this.aumentarVida, null, this);
+        this.physics.add.collider(this.jugador, this.grupoNave, this.reducirVidaJugador, null, this);// Si el jugador colisiona con una nave enemiga (grupoNave), se llama a reducirVidaJugador.
+        this.physics.add.collider(this.jugador, this.grupoMeteorosVerticales, this.gameOver, null, this); //Si el jugador choca con un meteoro, se llama a gameOver.
+        this.physics.add.collider(this.grupoProyectiles, this.grupoNave, this.destruirNave, null, this); //Si un proyectil del jugador impacta en una nave enemiga, se llama a destruirNave.
+        this.physics.add.collider(this.jugador, this.grupoProyectilesBoss, this.reducirVidaJugador, null, this); //Si el jugador es golpeado por un proyectil del jefe, se llama a reducirVidaJugador.
+        this.physics.add.collider(this.jugador, this.grupoVida, this.aumentarVida, null, this);// Si el jugador toca el objeto de vida, se llama a aumentarVida, posiblemente sumando una vida al jugador.
         //creamos el boss
         this.boss = this.physics.add.sprite(900, 200, 'boss');
         this.boss.visible = false;
