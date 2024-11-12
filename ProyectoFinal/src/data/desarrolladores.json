@@ -2,9 +2,9 @@
     {
         "id": 1,
         "name": "Mateo Tarifa 'Spine'",
-        "description": "Soy un aspirador a programador Front-end y desarrollador Web, me encanta la música y los videojuegos. Soy fanático de Gustavo Cerati y mi juego favorito es Terraria...",
+        "description": "Soy un aspirador a diseñador, animador y sonidista, me encanta la música y los videojuegos. Soy fanático de Gustavo Cerati y mi juego favorito es Terraria.",
         "image": "/Cat.jpeg",
-        "github": "https://github.com/desarrollador1"
+        "github": "https://github.com/Tarifa17"
     },
     {
         "id": 2,
@@ -22,9 +22,9 @@
     },
     {
         "id": 4,
-        "name": "Mateo Tarifa 'Spine' (Cat)",
-        "description": "Soy un aspirador a programador Front-end y desarrollador Web, me encanta la música y los videojuegos. Soy fanático de Gustavo Cerati y mi juego favorito es Terraria...",
-        "image": "/Cat.jpeg",
+        "name": "Cecilia Abachino",
+        "description": "...",
+        "image": "/",
         "github": "https://github.com/desarrollador1"
     }
 ]

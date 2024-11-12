@@ -15,11 +15,11 @@ class EscenaMain extends Phaser.Scene {
 
         this.load.image('meteoro2', '/public/img/meteoroA.png');
         this.load.image('Coin', '/public/img/Coin.png');
-        this.load.audio('MusicaFondo','/public/sound/MusicaFondo.mp3');
+        this.load.audio('MusicaFondo', '/public/sound/MusicaFondo.mp3');
         this.load.audio('disparo', '/public/sound/disparoS.mp3');
         this.load.audio('explosion', '/public/sound/explosion1.mp3');
-        this.load.spritesheet('nave', '/public/img/sheep-Sheet.png', {frameWidth:32, frameHeight: 30})
-     
+        this.load.spritesheet('nave', '/public/img/sheep-Sheet.png', { frameWidth: 32, frameHeight: 30 })
+
     }
 
     create() {
@@ -34,9 +34,10 @@ class EscenaMain extends Phaser.Scene {
         this.time.addEvent({ delay: 1000, callback: this.generarMeteoros, callbackScope: this, loop: true });
      //definimos las teclas para mover al jugador
         this.cursors = this.input.keyboard.createCursorKeys();
- 
+
         //collision jugador meteoros
         this.physics.add.collider(this.jugador, this.grupoMeteoros, this.gameOver, null, this);
+
 // Detectar colisión entre jugador y monedas
 this.physics.add.overlap(this.jugador, this.grupoObjetoEspecial, this.recogerObjetoEspecial, null, this);
 //collision meteoros y bullet
@@ -60,17 +61,16 @@ this.anims.create({
 })
 
         this.textoPuntaje = this.add.text(16,16,'Puntaje: 0', { fontSize: '32px', fill: '#fff' });
-        
         // Generar bonus después de 10 segundos
         this.time.addEvent({
-            delay: 10000, 
+            delay: 10000,
             callback: this.generarObjetoEspecial, // Llama al método para generar el objeto
             callbackScope: this,
-            loop: false 
+            loop: false
         });
         //musica de fondo
-        this.MusicaFondo =this.sound.add ('MusicaFondo',{loop :true});
-    this.MusicaFondo.play();
+        this.MusicaFondo = this.sound.add('MusicaFondo', { loop: true });
+        this.MusicaFondo.play();
     }
 
     // Método para generar el objeto en una posición aleatoria
@@ -79,22 +79,26 @@ this.anims.create({
         const x = Phaser.Math.Between(0, 800);
         const bonus = this.grupoObjetoEspecial.create(x, 0, 'Coin'); 
         //a bonus(moneda) se le asigna una velocidad  de caida constante de 200  en Y
-        bonus.setVelocityY(200);
+
         
+
+        bonus.setVelocityY(200);
+
     }
     //este metodo es llamado al haber una colision entre jugador y coin
     recogerObjetoEspecial(jugador, coin) {
         coin.destroy(); // Elimina la moneda (Coin) una vez recogida
         console.log("Moneda recogida!");
         this.scene.start('EscenaBonus', { puntaje: this.puntaje }); // Cambia a la escena "EscenaBonus" y pasa el puntaje
-        this.MusicaFondo.stop(); 
+        this.MusicaFondo.stop(); //Se detiene la musica de fondo
     }
-    //metodo para usarse al volver de la EScenaBonus
+    //metodo para usarse al volver de la EScenaBonus, pasa el puntaje
     init(data) {
         this.puntaje = data.puntaje || 0; // Si no hay puntaje recibido, lo deja en 0
     }
-    
 
+
+    //Metodo para generar los meteoros
     generarMeteoros() {
         const x = Phaser.Math.Between(0, 800);// Posición aleatoria en el eje X
         const meteoro = this.grupoMeteoros.create(x, 0, 'meteoro2');//crea un meteoro deste la parte superior de la pantalla
@@ -105,8 +109,8 @@ this.anims.create({
         this.physics.pause(); // Pausa todas las físicas
         jugador.setTint(0xff0000);
         console.log('Game Over');
-        this.scene.start('GameOver', { puntaje: this.puntaje });
-        this.MusicaFondo.stop();
+        this.scene.start('GameOver', { puntaje: this.puntaje }); //Lamamos a la escena gameOver
+        this.MusicaFondo.stop(); //Paramos la musica de fondo
     }
 
     update() {
@@ -114,6 +118,7 @@ this.anims.create({
         this.jugador.setVelocityX(0);
         this.jugador.setVelocityY(0);
          // Movimiento a la izquierda
+
         if (this.cursors.left.isDown) {
             this.jugador.setVelocityX(-300);
             this.jugador.anims.play('izquierda', true);
@@ -123,7 +128,7 @@ this.anims.create({
         else if (this.cursors.right.isDown) {
             this.jugador.setVelocityX(300);
             this.jugador.anims.play('derecha', true);
-        }else{
+        } else {
             this.jugador.anims.play('normal', true);
         }
 
@@ -134,14 +139,16 @@ this.anims.create({
         }
         //aumenta el puntaje en cada frame
         this.puntaje += 1;
+
         this.textoPuntaje.setText('Puntaje: ' + this.puntaje);  // Actualizar el texto del puntaje
 // Cambiar a la escena "EscenaHorizontal" al alcanzar un puntaje de 4000
+
         if (this.puntaje >= 4000) {
             console.log('Cambiando a EscenaHorizontal');
             this.MusicaFondo.stop(); // Detener la música de fondo
             this.scene.start('EscenaHorizontal', { puntaje: this.puntaje, bossGenerado: false }); // Cambiar a la escena "EscenaHorizontal" y pasar el puntaje
         }
-        
+
     }
 }
 

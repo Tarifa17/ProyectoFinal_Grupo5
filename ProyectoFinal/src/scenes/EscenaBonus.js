@@ -6,8 +6,8 @@ class EscenaBonus extends Phaser.Scene {
         this.cursors = null;
         this.puntaje = 0;
         this.textoPuntaje = null;
-        this.tiempoRestante = 15; 
-        this.textoTiempo = null; 
+        this.tiempoRestante = 15;
+        this.textoTiempo = null;
     }
 
     // Recibe el puntaje desde la escena principal
@@ -19,15 +19,15 @@ class EscenaBonus extends Phaser.Scene {
     preload() {
         this.load.image('Space', '/public/img/Space.jpg');
         this.load.image('nave', '/public/img/SS2.png');
-        this.load.image('coin', '/public/img/Coin.png'); 
-        this.load.audio('BonusS','/public/sound/BonusS.mp3');
+        this.load.image('coin', '/public/img/Coin.png');
+        this.load.audio('BonusS', '/public/sound/BonusS.mp3');
     }
 
     create() {
         this.add.image(400, 300, 'Space');
-        this.BonusS = this.sound.add('BonusS'); // Agrega esta línea para definir el sonido
+        this.BonusS = this.sound.add('BonusS'); // Definimos el sonido
 
-    this.BonusS.play(); // Ahora esto funcionará correctamente
+        this.BonusS.play(); // Ahora esto funcionará correctamente
         // Jugador
         this.jugador = this.physics.add.sprite(400, 550, 'nave');
         this.jugador.setCollideWorldBounds(true); // Evita que el jugador salga de los bordes del mundo
@@ -110,7 +110,7 @@ class EscenaBonus extends Phaser.Scene {
         } else if (this.cursors.right.isDown) {
             this.jugador.setVelocityX(300); // Movimiento a la derecha
             this.jugador.anims.play('derecha', true);
-        }else{
+        } else {
             this.jugador.anims.play('normal', true);
         }
 
