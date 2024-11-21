@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import './AboutUs.css';
+import '../Styles/AboutUs.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import desarrolladores from "../data/desarrolladores.json"; 
 import { CardImg } from 'react-bootstrap';
