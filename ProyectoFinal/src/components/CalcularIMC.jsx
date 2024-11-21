@@ -32,8 +32,7 @@ function CalcularImc() {
         }
     };
     // Funcion callback para restablecer el valor de todos los campos a vacio y el IMC nulo 
-    const limpiarCampos = () => {
-       
+    const limpiarCampos = () => {     
         setPeso('');
         setAltura('');
         setNombre('');
@@ -42,6 +41,19 @@ function CalcularImc() {
         setNivelPeso('');
     };
 
+    const pesoLimite = (e) => {
+        const value = e.target.value;
+        if (value === "" || (parseFloat(value) >= 1 && parseFloat(value) <= 250)) {
+            setPeso(value)
+        }
+    }
+
+    const alturaLimite = (e) => {
+        const value = e.target.value;
+        if (value === "" || (parseFloat(value) >= 0.5 && parseFloat(value) <= 2.5)) {
+            setAltura(value)
+        }
+    }
 
     return (
         <div className='container' id='bodyIMC'>
@@ -62,13 +74,13 @@ function CalcularImc() {
                 type="number" 
                 placeholder="Peso en kg" 
                 value={peso} 
-                onChange={(e) => setPeso(e.target.value)} //Actualizamos al estado correspondiente con OnChange
+                onChange={pesoLimite} //Actualizamos al estado correspondiente con OnChange
             />
             <input 
                 type="number" 
                 placeholder="Altura en metros" 
                 value={altura} 
-                onChange={(e) => setAltura(e.target.value)} //Actualizamos al estado correspondiente con OnChange
+                onChange={alturaLimite} //Actualizamos al estado correspondiente con OnChange
             /> 
             <button onClick={calcularIMC}>Calcular IMC</button> {/* Boton que al haecr click llama a la funcion callback para calcular el IMC */}
             <button onClick={limpiarCampos}>Limpiar</button> {/* Boton que al haecr click llama a la funcion callback para poner el valor de los campos en vacio*/}
