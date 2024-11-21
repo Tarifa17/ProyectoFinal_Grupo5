@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Calculadora.css';
+import '../Styles/Calculadora.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Componente funcional para calcular el peso del usuario

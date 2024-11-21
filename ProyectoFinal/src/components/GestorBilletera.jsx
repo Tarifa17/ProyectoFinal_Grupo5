@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './GestorBilletera.css'
+import '../Styles/GestorBilletera.css'
 
 // Componente funcional para guardar datos sobre las transacciones de una billetera de un usuario
 function GestorBilletera() {
