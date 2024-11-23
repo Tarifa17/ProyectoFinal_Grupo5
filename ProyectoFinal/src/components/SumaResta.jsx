@@ -1,5 +1,5 @@
 // components/SumaResta.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Puntuacion from './Puntuacion';
@@ -21,37 +21,68 @@ function SumaResta() {
             numero2,
             resultado
         };
-    };
+    }; 
 
     const [operacion, setOperacion] = useState(generarOperacion()); //Establce el estado de la operacion a la operacion generada
-    const [respuesta, setRespuesta] = useState(''); //Estado de la respuesta del usuario
+
     const [puntaje, setPuntaje] = useState(0); //Estado del puntaje que inicializamos en 0
     const [mensaje, setMensaje] = useState(''); //Estado del mensaje mostrado en pantalla
     const [intento, setIntento] = useState(1); //Estado del numero de intentos del usuario
     const [verificado, setVerificado] = useState(false); //Estado para verificar si el usuario verifico su respuesta
+    const [opcionCorrecta, setOpcionCorrecta] = useState(operacion.resultado);
+    const [opcionAleatoria, setOpcionAleatoria ]= useState([operacion.resultado + 2, operacion.resultado -1]);
+
+    const [respuesta, setRespuesta] = useState([]); //Estado de la respuesta del usuario
+
+    /* Actualizacion de hook cada vez que se renderiza la operacion*/
+    useEffect(() => {
+        const nuevaCorrecta = operacion.resultado;
+        const nuevasOpcionesAleatorias = [
+            operacion.resultado + 2,
+            operacion.resultado - 1
+        ];
+        const todasLasOpciones = [nuevaCorrecta, ...nuevasOpcionesAleatorias];
+        const opcionesMezcladas = todasLasOpciones.sort(() => Math.random() - 0.5);
+
+        setOpcionCorrecta(nuevaCorrecta);
+        setOpcionAleatoria(nuevasOpcionesAleatorias);
+        setRespuesta(opcionesMezcladas);
+    }, [operacion]);
+
 
     //Funcion callback para verificar la respuesta del usuario
-    const verificarRespuesta = () => {
+    const verificarRespuesta = (rta) => {
         //Si la respuesta no esta verificada y la respuesta es igual al resultado
-        if ( !verificado && parseInt(respuesta) === operacion.resultado) {
-            setPuntaje(puntaje + 1); //Sumamos una unidad al puntaje
-            setMensaje('¡Correcto!'); //Establecemos el estado del mensaje en correcto
-            setVerificado(true); //El estado de verificado pasa a true
-        } else {
-            setMensaje('Incorrecto. Intenta nuevamente.'); //Establecemos el estado del mensaje en incorrecto
-            setVerificado(true);  //El estado de verificado pasa a true
+        if (parseInt(rta) === operacion.resultado) {
+            setPuntaje(puntaje + 1); //Sumamos una unidad al puntaje      
+            setVerificado(true); // El verificado pasa a falso para volver a verificar     
+        } else{
+            setVerificado(true)
         }
+        setTimeout(() => {
+            siguienteDesafio()                
+        }, 3000);
+
     };
+
+    const colorBoton= (rta) => {
+        if (!rta === " "){
+            return "primary"
+        }
+        if (parseInt(rta) === operacion.resultado) {       
+            return "success"          
+        } else {
+            return "danger"
+        }
+    }
 
     //Funcion callback para generar una nueva operacion
     const siguienteDesafio = () => {
-        setRespuesta(''); //Reiniciamos el estado de la respuesta
         setOperacion(generarOperacion()); //Generamos una nueva operacion
         setMensaje('');  //Reiniciamos el valor del mensaje
         setIntento(prevIntento => prevIntento + 1); //Aumenta el numero de intentos en 1 unidad
-        setVerificado(false); // El verificado pasa a falso para volver a verificar
+        setVerificado(false); // El verificado pasa a falso para volver a verificar     
     };
-
     //Si hemos alcanzado los 5 intentos pasamos a la pantalla de puntuacion y mostramos el puntaje
     if (intento === 6){
         return <Puntuacion puntos={puntaje}/>
@@ -69,17 +100,10 @@ function SumaResta() {
                                 ? `${operacion.numero1} + ${operacion.numero2}` 
                                 : `${operacion.numero1} - ${operacion.numero2}`}
                         </h2>
-                    </Card.Title>
-                    <input 
-                        type="text" 
-                        value={respuesta} 
-                        onChange={(e) => setRespuesta(e.target.value)} //Cambiamos el estado de respuesta cada vez que haya un cambio
-                        placeholder="Ingresa tu respuesta" 
-                    />
-                    {/* Boton para verificar el resultado que llama a la funcion callback y se desactiva una vez verificado el resultado*/}
-                    <Button variant="primary" onClick={verificarRespuesta} disabled={verificado}>Verificar Resultado</Button>
-                    {/* Boton para generar una nueva operacion que llama a la funcion callback siguienteDesafio */}
-                    <Button variant="primary" onClick={siguienteDesafio}>Siguiente Desafío</Button>
+                    </Card.Title>                 
+                    {respuesta.map((rta, index) =>( 
+                        <Button variant={colorBoton(rta)} key={index} onClick={() => verificarRespuesta(rta)} disabled={verificado}>{rta}</Button>
+                    ))}
                     <Card.Text>
                         <h6>{mensaje}</h6>
                         <h6>Puntaje: {puntaje}</h6>

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Home.css';
+import '../Styles/Home.css';
 import Carousel from 'react-bootstrap/Carousel';
 
 function Home() {
