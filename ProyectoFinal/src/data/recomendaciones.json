@@ -1,0 +1,25 @@
+{    
+    "Bajo peso":{
+        "nutricion": "Incrementar el consumo de alimentos ricos en calorías y nutrientes (grasas saludables, carbohidratos complejos y proteínas).",
+        "ejercicio": "Realizar ejercicios de resistencia para ganar masa muscular.",
+        "mensaje": "Consulta medica: Investigar posibles causas como desnutrición, problemas metabólicos o de salud mental."
+    },
+    
+    "Peso Saludable": {
+        "nutricion": "Mantener una dieta balanceada que incluya frutas, verduras, proteínas magras, grasas saludables y carbohidratos integrales.",
+        "ejercicio": "Practicar al menos 150 minutos de actividad física moderada a la semana (por ejemplo, caminar, correr, nadar).",
+        "mensaje": "Dormir suficiente, manejar el estrés y mantener hábitos saludables."
+    },
+    
+    "Sobrepeso":{
+        "nutricion": "Reducir el consumo de alimentos ultraprocesados, azúcares y grasas saturadas. Priorizar alimentos ricos en fibra y proteínas.",
+        "ejercicio": "Incrementar la actividad física, enfocándose en ejercicios cardiovasculares y de fuerza.",
+        "mensaje": "Considerar la orientación de un nutricionista o médico para personalizar el plan de acción."
+    },
+    
+    "Obesidad":{
+        "nutricion": "Adoptar un plan alimenticio diseñado por un profesional, enfocado en la pérdida de peso gradual y sostenible.",
+        "ejercicio": "Combinar actividad cardiovascular con ejercicios de fuerza, adaptados a las capacidades iniciales.",
+        "mensaje": "Atencio medica: Evaluar posibles complicaciones asociadas como hipertensión, diabetes o problemas articulares. Apoyo emocional: Contar con soporte psicológico, si es necesario, para abordar aspectos relacionados con la alimentación emocional o la autoestima."
+    }
+}
