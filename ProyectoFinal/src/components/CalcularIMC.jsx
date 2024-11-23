@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../Styles/Calculadora.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import recomendaciones from "../data/recomendaciones.json";
 
 // Componente funcional para calcular el peso del usuario
 function CalcularImc() { 
@@ -90,6 +91,9 @@ function CalcularImc() {
                     <h2>Paciente: {nombre} {apellido}</h2>
                     <p>IMC: {imc}</p>
                     <p>Nivel de peso: {nivelPeso}</p>
+                    <p>{recomendaciones[nivelPeso]?.nutricion}</p>
+                    <p>{recomendaciones[nivelPeso]?.ejercicio}</p>  
+                    <p>{recomendaciones[nivelPeso]?.mensaje}</p> 
                 </div>
             )}
         </div>
