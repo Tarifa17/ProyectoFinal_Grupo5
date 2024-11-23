@@ -83,15 +83,6 @@ function GestorBilletera() {
               onChange={(e) => setTransaccion(e.target.value)} //Actualizamos al estado correspondiente con OnChange
             />
           </li>
-          <li className="list-group-item">
-            <a
-              href="https://search.brave.com/search?q=naranjaX"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Abrir en nueva pestaña
-            </a>
-          </li>
         </ul>
         <div className="flex-container mt-3">
           {/* Boton que al ser presionado llama a la funcion callback guardarDatos */}
