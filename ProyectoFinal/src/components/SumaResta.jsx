@@ -100,10 +100,22 @@ function SumaResta() {
                                 ? `${operacion.numero1} + ${operacion.numero2}` 
                                 : `${operacion.numero1} - ${operacion.numero2}`}
                         </h2>
+                        
                     </Card.Title>                 
-                    {respuesta.map((rta, index) =>( 
-                        <Button variant={colorBoton(rta)} key={index} onClick={() => verificarRespuesta(rta)} disabled={verificado}>{rta}</Button>
-                    ))}
+                    <div className="row">
+                        {respuesta.map((rta, index) => (
+                            <div className="col" key={index}>
+                                <Button
+                                    variant={colorBoton(rta)}
+                                    onClick={() => verificarRespuesta(rta)}
+                                    disabled={verificado}
+                                    className="w-100"
+                                >
+                                    {rta}
+                                </Button>
+                            </div>
+                        ))}
+                    </div>
                     <Card.Text>
                         <h6>{mensaje}</h6>
                         <h6>Puntaje: {puntaje}</h6>
