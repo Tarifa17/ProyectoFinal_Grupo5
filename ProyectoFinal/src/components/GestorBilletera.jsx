@@ -11,6 +11,9 @@ function GestorBilletera() {
   const [listaBilleteras, setListaBilleteras] = useState([]);
   const [listaTransacciones, setListaTransacciones] = useState([]);
   const [resultados, setResultados] = useState([]);
+
+  // Lista de opciones para las billeteras
+  const billeterasDisponibles = ["Personal Pay", "NaranjaX", "MercadoPago", "Claro", "Otra"];
   
   // Función callback para guardar datos
   const guardarDatos = () => {
@@ -100,13 +103,28 @@ function GestorBilletera() {
             />
           </li>
           <li className="list-group-item">
-            <input
-              type="text"
-              placeholder="Billetera"
-              className="form-control"
+          <select
+              className="form-select"
               value={billetera}
-              onChange={(e) => setBilletera(e.target.value)} //Actualizamos al estado correspondiente con OnChange
-            />
+              onChange={(e) => {
+                const valorSeleccionado = e.target.value;
+                if (valorSeleccionado === "Otra") {
+                  const nuevaBilletera = prompt("Ingresa el nombre de la nueva billetera:");
+                  setBilletera(nuevaBilletera || ""); // Actualiza solo si el usuario introduce un valor
+                } else {
+                  setBilletera(valorSeleccionado);
+                }
+              }}
+            >
+              <option value="" disabled>
+                Selecciona una billetera
+              </option>
+              {billeterasDisponibles.map((opcion, index) => (
+                <option key={index} value={opcion}>
+                  {opcion}
+                </option>
+              ))}
+            </select>
           </li>
           <li className="list-group-item">
             <input
