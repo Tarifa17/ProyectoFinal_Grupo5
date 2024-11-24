@@ -11,9 +11,15 @@ function GestorBilletera() {
   const [listaBilleteras, setListaBilleteras] = useState([]);
   const [listaTransacciones, setListaTransacciones] = useState([]);
   const [resultados, setResultados] = useState([]);
-
+  
   // Función callback para guardar datos
   const guardarDatos = () => {
+    const nombreValido = /^[a-zA-Z\s]+$/.test(usuario.trim());
+
+    if (!nombreValido) {
+      alert("El nombre de usuario debe contener solo letras.");
+      return;
+    }
     setListaUsuarios([...listaUsuarios, usuario]); //Guardamos los datos en la Lista de Usuarios
     setListaBilleteras([...listaBilleteras, billetera]); //Guardamos los datos en la Lista de Billeteras
     setListaTransacciones([...listaTransacciones, parseInt(transaccion, 10)]); //Guardamos los datos en la Lista de transacciones y cambiamos el valor a un entero
@@ -21,8 +27,8 @@ function GestorBilletera() {
     setBilletera(''); //Limpiamos los campos despues de guardar los datos
     setTransaccion(''); //Limpiamos los campos despues de guardar los datos
   };
-
-  // Función callback para mostrar los datos guardados
+  
+   // Función callback para mostrar los datos guardados
   const mostrarDatos = () => {
     return listaUsuarios.map((usuario, index) => ( //Utilizamos map para iterar sobre el array de usuarios y generamos un elemento para cada usuario con sus datos
      //Renderizamos la lista con los datos del usuario y usamos su posicion en el array como key
@@ -31,7 +37,7 @@ function GestorBilletera() {
       </li>
     ));
   };
-
+  
   // Función para mostrar al usuario con la mayor transacción
   const mostrarMayor = () => {
     const maxTransacciones = {}; //Almacenamos el numero maximo de transacciones para cada usuario
@@ -48,6 +54,34 @@ function GestorBilletera() {
     setResultados(resultadosTemp); // Establecemos el nuevo valor de los resultados con el valor de resultadosTemp
   };
 
+  // Función para procesar los datos acumulados
+  const obtenerDatosAcumulados = () => {
+    const acumulado = {};
+
+    listaUsuarios.forEach((u, index) => {
+      const key = `${u}`; // Usar una clave única con el nombre y la billetera
+      if (acumulado[key]) {
+        acumulado[key].transacciones += listaTransacciones[index];
+      } else {
+        acumulado[key] = {
+          nombre: u,
+          transacciones: listaTransacciones[index],
+        };
+      }
+    });
+
+    return Object.values(acumulado); // Convertir el objeto en un array para mostrar
+  };
+
+  // Función para mostrar los datos acumulados
+  const mostrarAcumulados = () => {
+    const datosAcumulados = obtenerDatosAcumulados();
+    return datosAcumulados.map((u, index) => (
+      <li key={index} className="list-group-item">
+        {u.nombre} - {u.billetera} - Total Transacciones: {u.transacciones}
+      </li>
+    ));
+  };
   return (
     <div className="container-flex" id='bodyGestor'>
       <div className="card custom-card" style={{ width: '40rem' }}>
@@ -80,18 +114,18 @@ function GestorBilletera() {
               placeholder="N° Transacciones"
               className="form-control"
               value={transaccion}
-              onChange={(e) => setTransaccion(e.target.value)} //Actualizamos al estado correspondiente con OnChange
-            />
+              onChange={(e) => {                       //Actualizamos y verificamos al estado correspondiente con OnChange
+                const valor = e.target.value;
+                if (!isNaN(valor) && parseInt(valor, 10) >= 0) {
+                  setTransaccion(valor);
+                } else {
+                  alert('Ingresa un número válido de transacciones.');
+                }
+              }} 
+              min = "1"
+           />
           </li>
-          <li className="list-group-item">
-            <a
-              href="https://search.brave.com/search?q=naranjaX"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Abrir en nueva pestaña
-            </a>
-          </li>
+          
         </ul>
         <div className="flex-container mt-3">
           {/* Boton que al ser presionado llama a la funcion callback guardarDatos */}
@@ -112,6 +146,11 @@ function GestorBilletera() {
       </div>
 
       <div className="container mt-4">
+        <h5>Total de Transacciones</h5>
+        <ul className="list-group">{mostrarAcumulados()}</ul>
+      </div>
+
+      <div className="container mt-4">
         <h5>Resultados</h5>
         {/* Recorremos el array resultados, y para cada elemento creamos un parrafo para el contenido de cada resultado*/}
         {resultados.map((resultado, index) => (
@@ -122,4 +161,4 @@ function GestorBilletera() {
   );
 }
 
-export default GestorBilletera; 
+export default GestorBilletera;
