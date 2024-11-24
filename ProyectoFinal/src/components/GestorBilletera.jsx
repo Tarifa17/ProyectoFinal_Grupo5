@@ -143,7 +143,7 @@ function GestorBilletera() {
               min = "1"
            />
           </li>
-          
+         
         </ul>
         <div className="flex-container mt-3">
           {/* Boton que al ser presionado llama a la funcion callback guardarDatos */}
